@@ -1,8 +1,8 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 
-/* For testing LineCharts in Chart.js*/
-function LineChart() {
+/* For testing LineCharts with multiple axes in Chart.js*/
+function LineChartMultipleAxes() {
   const data = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
     datasets: [
@@ -13,6 +13,7 @@ function LineChart() {
         backgroundColor: ["rgba(255, 200, 100, 0.2)"],
         pointBackgroundColor: "rgba(255, 200, 100, 0.2)",
         pointBorderColor: "rgba(255, 200, 100, 0.2)",
+        yAxisID: "first-y-axis",
       },
       {
         label: "2020",
@@ -21,6 +22,7 @@ function LineChart() {
         backgroundColor: ["rgba(235, 49, 170, 0.2)"],
         pointBackgroundColor: "rgba(235, 49, 170, 0.2)",
         pointBorderColor: "rgba(235, 49, 170, 0.2)",
+        yAxisID: "second-y-axis",
       },
     ],
   };
@@ -32,6 +34,15 @@ function LineChart() {
     scales: {
       yAxes: [
         {
+          id: "first-y-axis",
+          ticks: {
+            min: -10,
+            max: 25,
+            stepSize: 10,
+          },
+        },
+        {
+          id: "second-y-axis",
           ticks: {
             min: -10,
             max: 25,
@@ -49,4 +60,4 @@ function LineChart() {
   );
 }
 
-export default LineChart;
+export default LineChartMultipleAxes;
