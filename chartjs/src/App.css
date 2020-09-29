@@ -4,13 +4,14 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 .title {
   padding: 50px 0 0;
+}
+
+.chart-title {
+  text-align: left;
+  display: block;
+  margin-top: 5rem;
 }
 
 .text {
@@ -18,12 +19,25 @@
   font-size: small;
 }
 
-.chart > * {
-  margin: 25px 0 10px;
+.chart-container {
+  position: relative;
+  height: 40vh;
+}
+
+.chart-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chart-grid > * {
+  flex: 1 1 500px;
+  margin: 5px;
 }
 
 .aligned-left p {
   text-align: left;
+  padding-top: 1rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
