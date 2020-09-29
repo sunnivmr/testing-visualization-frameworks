@@ -57,7 +57,8 @@ function BarChartMultipleAxes() {
 
   return (
     <div className="chart-container">
-      <Bar data={data} options={options}></Bar>
+      <Bar className="chart" data={data} options={options}></Bar>
+      <button>Export to PNG</button>
     </div>
   );
 }

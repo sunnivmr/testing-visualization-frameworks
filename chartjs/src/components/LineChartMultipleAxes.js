@@ -55,7 +55,7 @@ function LineChartMultipleAxes() {
 
   return (
     <div className="chart-container">
-      <Line data={data} options={options}></Line>
+      <Line className="chart" data={data} options={options}></Line>
     </div>
   );
 }

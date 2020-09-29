@@ -38,7 +38,7 @@ function BarChart() {
 
   return (
     <div className="chart-container">
-      <Bar data={data} options={options}></Bar>
+      <Bar data={data} className="chart" options={options}></Bar>
     </div>
   );
 }

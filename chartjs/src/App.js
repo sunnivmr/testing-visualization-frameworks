@@ -28,7 +28,6 @@ function App() {
         <LineChartMultipleAxes />
         <BarChartMultipleAxes />
       </div>
-
       <div className="text aligned-left">
         <p>Sunniva Mathea Runde, Kaja Løvsjø Solberg</p>
       </div>
