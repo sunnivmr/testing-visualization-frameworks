@@ -3,8 +3,8 @@ import { Bar } from "react-chartjs-2";
 
 /* For testing BarCharts with multiple axes in Chart.js*/
 function BarChartMultipleAxes() {
-  //const chartRef = useRef(null);
-  const base64Image = chartRef.current.chartInstance.toBase64Image();
+  /*const chartRef = useRef(null);
+  const base64Image = chartRef.current.chartInstance.toBase64Image();*/
 
   const data = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
@@ -62,7 +62,7 @@ function BarChartMultipleAxes() {
     <div className="chart-container">
       <Bar className="chart" data={data} options={options} /*ref={chartRef}*/ />
       <button>Export to PNG</button>
-      <img src={base64Image} alt="Chart image" />
+      {/**<img src={base64Image} alt="Chart image" />*/}
     </div>
   );
 }

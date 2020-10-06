@@ -4,14 +4,15 @@ class FetchData extends React.Component {
   state = {
     loading: true,
     graphData: null,
+    dataDescription: "",
   };
 
   async componentDidMount() {
-    const url = "http://ibmrisvol.ibm.ntnu.no/";
+    const url = "http://ibmrisvol.ibm.ntnu.no/data/info?id=1";
     const response = await fetch(url);
     const data = await response.json();
-    this.setState({ graphData: data.results[0], loading: false });
-    console.log(data.results[0]);
+    this.setState({ graphData: data, loading: false });
+    console.log(data);
   }
 
   render() {
