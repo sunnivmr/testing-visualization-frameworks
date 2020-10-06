@@ -11,7 +11,11 @@ class FetchData extends React.Component {
     const url = "http://ibmrisvol.ibm.ntnu.no/data/info?id=1";
     const response = await fetch(url);
     const data = await response.json();
-    this.setState({ graphData: data, loading: false });
+    this.setState({
+      graphData: data,
+      dataDescription: data.description,
+      loading: false,
+    });
     console.log(data);
   }
 
@@ -21,7 +25,7 @@ class FetchData extends React.Component {
         {this.state.loading || !this.state.graphData ? (
           <div>Loading...</div>
         ) : (
-          <div>Data is loaded</div>
+          <div>Datatype loaded: {this.state.dataDescription}</div>
         )}
       </div>
     );
