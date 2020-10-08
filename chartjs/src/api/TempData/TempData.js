@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./FetchTempData.scss";
+import styles from "./TempData.scss";
 import LineChartWithProps from "../../components/LineChart/LineChartWProps";
 
-class FetchTempData extends React.Component {
+class TempData extends React.Component {
   state = {
     loading: true,
     dataType: "",
@@ -68,10 +68,10 @@ class FetchTempData extends React.Component {
 
         <div className="chart">
           <LineChartWithProps
-            measurements={measurements}
-            timestamps={timestamps}
-            title={"Temperature measurements in a timeframe (°C)"}
-            label={"Temperature"}
+            data={measurements}
+            labels={timestamps}
+            title={"Temperature measurements during a timeframe (°C)"}
+            label={"Measurement"}
             color={"rgba(100, 200, 100, 0.2)"}
             stepSize={0.005}
           />
@@ -81,4 +81,4 @@ class FetchTempData extends React.Component {
   }
 }
 
-export default FetchTempData;
+export default TempData;

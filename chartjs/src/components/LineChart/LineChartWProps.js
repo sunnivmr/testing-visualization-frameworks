@@ -4,12 +4,12 @@ import { Line } from "react-chartjs-2";
 /* For testing LineCharts in Chart.js*/
 function LineChartWProps(props) {
   const data = {
-    labels: props.timestamps,
+    labels: props.labels,
     datasets: [
       {
         title: props.title,
         label: props.label,
-        data: props.measurements,
+        data: props.data,
         borderColor: props.color,
         backgroundColor: props.color,
         pointBackgroundColor: props.color,
@@ -27,8 +27,8 @@ function LineChartWProps(props) {
       yAxes: [
         {
           ticks: {
-            min: Math.min(...props.measurements),
-            max: Math.max(...props.measurements) + props.stepSize,
+            min: Math.min(...props.data) - props.stepSize,
+            max: Math.max(...props.data) + props.stepSize,
             stepSize: props.stepSize,
           },
         },
@@ -39,7 +39,6 @@ function LineChartWProps(props) {
   return (
     <div className="chart-container">
       <Line className="chart" data={data} options={options} />
-      {console.log(props.measurements)}
     </div>
   );
 }

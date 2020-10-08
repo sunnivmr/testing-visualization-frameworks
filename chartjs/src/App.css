@@ -37,19 +37,18 @@
 }
 
 .chart-grid > * {
-  flex: 1 1 500px;
+  flex: 1 1 250px;
   margin: 5px;
+}
+
+.chart-info-text {
+  text-align: left;
+  font-style: italic;
 }
 
 .aligned-left p {
   text-align: left;
   padding-top: 1rem;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {

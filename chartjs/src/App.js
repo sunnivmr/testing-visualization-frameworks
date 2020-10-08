@@ -5,7 +5,7 @@ import BarChart from "./components/BarChart/BarChart";
 import LineChartMultipleAxes from "./components/LineChart/LineChartMultipleAxes";
 import BarChartMultipleAxes from "./components/BarChart/BarChartMultipleAxes";
 
-import FetchTempData from "./api/FetchTempData/FetchTempData";
+import TempData from "./api/TempData/TempData";
 
 function App() {
   return (
@@ -35,7 +35,7 @@ function App() {
           <h2>Data from API</h2>
         </div>
 
-        <FetchTempData />
+        <TempData />
       </div>
       <div className="text aligned-left">
         <p>Sunniva Mathea Runde, Kaja Løvsjø Solberg</p>
