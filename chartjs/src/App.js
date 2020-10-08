@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import LineChart from "./components/LineChart";
-import BarChart from "./components/BarChart";
-import LineChartMultipleAxes from "./components/LineChartMultipleAxes";
-import BarChartMultipleAxes from "./components/BarChartMultipleAxes";
+import LineChart from "./components/LineChart/LineChart";
+import BarChart from "./components/BarChart/BarChart";
+import LineChartMultipleAxes from "./components/LineChart/LineChartMultipleAxes";
+import BarChartMultipleAxes from "./components/BarChart/BarChartMultipleAxes";
 
 import FetchTempData from "./api/FetchTempData/FetchTempData";
 

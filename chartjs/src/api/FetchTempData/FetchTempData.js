@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./FetchTempData.scss";
+import LineChartWithProps from "../../components/LineChart/LineChartWProps";
 
 class FetchTempData extends React.Component {
   state = {
@@ -20,11 +21,11 @@ class FetchTempData extends React.Component {
       fromDate: data.from_date,
       untilDate: data.until_date,
       dataType: data.data[0].data_info,
-      measurements: data.data[0].measurements,
+      measurementsData: data.data[0].measurements,
       loading: false,
     });
     console.log(data);
-    console.log(this.state.graphData);
+    console.log(this.state.measurementsData);
   }
 
   render() {
@@ -35,6 +36,16 @@ class FetchTempData extends React.Component {
     if (!this.state.dataType) {
       return <div>No data available</div>;
     }
+
+    // Return measurements
+    const measurements = this.state.measurementsData.map((data) =>
+      Number(data.measurement)
+    );
+
+    // Return timestamps
+    const timestamps = this.state.measurementsData.map((data) =>
+      data.time_stamp_utc.substring(11, 16)
+    );
 
     return (
       <div className="apidata">
@@ -53,12 +64,17 @@ class FetchTempData extends React.Component {
           </div>
         </div>
 
-        <div className="measurements">
-          {this.state.measurements.map((measurement) => (
-            <div key={measurement.time_stamp_utc} className="measurement">
-              {measurement.time_stamp_utc}: {measurement.measurement}
-            </div>
-          ))}
+        <div className="measurements"></div>
+
+        <div className="chart">
+          <LineChartWithProps
+            measurements={measurements}
+            timestamps={timestamps}
+            title={"Temperature measurements in a timeframe (°C)"}
+            label={"Temperature"}
+            color={"rgba(100, 200, 100, 0.2)"}
+            stepSize={0.005}
+          />
         </div>
       </div>
     );
