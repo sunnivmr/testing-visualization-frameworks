@@ -47,6 +47,11 @@ class TempData extends React.Component {
       data.time_stamp_utc.substring(11, 16)
     );
 
+    /*
+    // Reference to export png
+    const chartRef = useRef(null);
+    const base64Image = chartRef.current.chartInstance.toBase64Image();*/
+
     return (
       <div className="apidata">
         <div className="data-info">
@@ -64,8 +69,6 @@ class TempData extends React.Component {
           </div>
         </div>
 
-        <div className="measurements"></div>
-
         <div className="chart">
           <LineChartWithProps
             data={measurements}
@@ -74,7 +77,10 @@ class TempData extends React.Component {
             label={"Measurement"}
             color={"rgba(100, 200, 100, 0.2)"}
             stepSize={0.005}
+            /*ref={chartRef}*/
           />
+
+          <button>Export to PNG</button>
         </div>
       </div>
     );

@@ -3,9 +3,6 @@ import { Bar } from "react-chartjs-2";
 
 /* For testing BarCharts with multiple axes in Chart.js*/
 function BarChartMultipleAxes() {
-  /*const chartRef = useRef(null);
-  const base64Image = chartRef.current.chartInstance.toBase64Image();*/
-
   const yellow = "rgba(255, 200, 100, 0.2)";
   const pink = "rgba(235, 49, 170, 0.2)";
   const green = "rgba(100, 200, 100, 0.2)";
@@ -70,8 +67,6 @@ function BarChartMultipleAxes() {
     <div className="chart-container">
       <Bar className="chart" data={data} options={options} /*ref={chartRef}*/ />
       <p className="chart-info-text">One axis on each side.</p>
-      <button>Export to PNG</button>
-      {/**<img src={base64Image} alt="Chart image" />*/}
     </div>
   );
 }
