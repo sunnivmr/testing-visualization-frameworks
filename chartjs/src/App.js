@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import LineChart from "./components/LineChart";
-import BarChart from "./components/BarChart";
-import LineChartMultipleAxes from "./components/LineChartMultipleAxes";
-import BarChartMultipleAxes from "./components/BarChartMultipleAxes";
+import LineChart from "./components/LineChart/LineChart";
+import BarChart from "./components/BarChart/BarChart";
+import LineChartMultipleAxes from "./components/LineChart/LineChartMultipleAxes";
+import BarChartMultipleAxes from "./components/BarChart/BarChartMultipleAxes";
 
-import FetchData from "./api/FetchData";
+import TempData from "./api/TempData/TempData";
 
 function App() {
   return (
@@ -35,7 +35,7 @@ function App() {
           <h2>Data from API</h2>
         </div>
 
-        <FetchData />
+        <TempData />
       </div>
       <div className="text aligned-left">
         <p>Sunniva Mathea Runde, Kaja Løvsjø Solberg</p>
