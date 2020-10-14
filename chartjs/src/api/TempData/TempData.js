@@ -80,7 +80,7 @@ class TempData extends React.Component {
             /*ref={chartRef}*/
           />
 
-          <button>Export to PNG</button>
+          {/*button>Export to PNG</button>*/}
         </div>
       </div>
     );
