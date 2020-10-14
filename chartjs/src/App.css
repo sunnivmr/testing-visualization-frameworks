@@ -1,16 +1,54 @@
 .App {
+  margin: auto;
+  width: 75%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title {
+  padding: 50px 0 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.chart-title {
+  display: block;
+  margin-top: 5rem;
+}
+
+.text {
+  padding: 5px;
+  font-size: small;
+}
+
+.chart-container {
+  position: relative;
+  height: 40vh;
+  padding-bottom: 2em;
+  text-align: right;
+}
+
+.button {
+  position: absolute;
+  right: 0;
+}
+
+.chart-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chart-grid > * {
+  flex: 1 1 250px;
+  margin: 5px;
+}
+
+.chart-info-text {
+  text-align: left;
+  font-style: italic;
+}
+
+.aligned-left p {
+  text-align: left;
+  padding-top: 1rem;
 }
 
 .App-header {
