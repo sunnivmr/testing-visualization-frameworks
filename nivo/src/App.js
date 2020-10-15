@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import BarChart from "./components/BarChart/BarChart";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="title">
+        <h1>Nivo testing</h1>
+      </div>
+      <div className="text">
+        <p>Testing Nivo framework for Master's Thesis 2020/2021</p>
+      </div>
+      <div className="chart-title">
+        <h2>Normal charts</h2>
+        <BarChart />
+      </div>
+      <div className="chart-grid normal-charts"></div>
+      <div className="chart-title">
+        <h2>Multiple axes charts</h2>
+      </div>
+      <div className="chart-grid multiple-axes-charts"></div>
+      <div className="api-chart">
+        <div className="chart-title">
+          <h2>Data from API</h2>
+        </div>
+      </div>
+      <div className="text aligned-left">
+        <p>Sunniva Mathea Runde, Kaja Løvsjø Solberg</p>
+      </div>
     </div>
   );
 }
