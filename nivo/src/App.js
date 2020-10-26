@@ -1,6 +1,8 @@
 import React from "react";
 import BarChart from "./components/BarChart/BarChart";
+import LineChart from "./components/LineChart/LineChart";
 import "./App.css";
+import "./style/chart.css";
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
       <div className="chart-title">
         <h2>Normal charts</h2>
         <BarChart />
+        <LineChart />
       </div>
       <div className="chart-grid normal-charts"></div>
       <div className="chart-title">
