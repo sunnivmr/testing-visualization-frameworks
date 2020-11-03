@@ -24,10 +24,10 @@ class LineChart extends React.Component {
           colors={
             this.blue
           }
-          lineWidth={5}
+          lineWidth={3}
           pointSize={10}
           pointColor={"white"}
-          pointBorderColor={this.yellow}
+          pointBorderColor={this.blue}
           pointBorderWidth={2}
           enablePointLabel
           enableGridX={false} 

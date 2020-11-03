@@ -10,6 +10,7 @@ class TempData extends React.Component {
     dateFrom: null,
     dateUntil: null,
     dataDescription: "",
+    config: null,
   };
 
   async componentDidMount() {
@@ -47,8 +48,15 @@ class TempData extends React.Component {
       data.time_stamp_utc.substring(11, 16)
     );
 
-    const apiData = {
-
+    // Set config
+    const config = {
+      keys: ["measurement"],
+      margin: {
+        top: 50,
+        right: 130,
+        bottom: 50,
+        left: 60,
+      },
     }
 
     /*
@@ -67,15 +75,11 @@ class TempData extends React.Component {
             <h4>Until: </h4>
             <p>{this.state.untilDate}</p>
           </div>
-          <div>
-            <h4>Data type:</h4>
-            <p>{this.state.dataType}</p>
-          </div>
         </div>
 
         <div className="chart">
           <LineChartWithProps
-            data={apiData}
+            data={measurements} config={config}
           />
 
           {/*button>Export to PNG</button>*/}

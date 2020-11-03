@@ -3,25 +3,17 @@ import { ResponsiveLine } from "@nivo/line";
 
 /* For testing LineCharts in Chart.js*/
 function LineChartWProps(props) {
+
+  const config = props.config;
+
   const data = {
-    labels: props.labels,
-    datasets: [
-      {
-        title: props.title,
-        label: props.label,
-        data: props.data,
-        borderColor: props.color,
-        backgroundColor: props.color,
-        pointBackgroundColor: props.color,
-        pointBorderColor: props.color,
-        stepSize: props.stepSize,
-      },
-    ],
+    id: 1,
+    data: props.data,
   };
 
   return (
     <div className="chart-container">
-      <ResponsiveLine className="chart" data={data} />
+      <ResponsiveLine className="chart" data={data} keys={config.keys} />
     </div>
   );
 }

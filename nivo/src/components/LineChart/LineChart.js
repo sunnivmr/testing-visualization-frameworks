@@ -21,21 +21,14 @@ class LineChart extends React.Component {
           keys={config.keys}
           margin={config.margin}
           legends={config.legends}
-          colors={
-            this.yellow
-          }
-          lineWidth={5}
+          colors={this.yellow}
+          lineWidth={3}
           pointSize={10}
           pointColor={"white"}
-          pointBorderColor={this.blue}
+          pointBorderColor={this.yellow}
           pointBorderWidth={2}
           enablePointLabel
-          enableGridX={false} /*
-          padding={0.5}
-          
-          enableLabel={false}
-          axisRight={this.axisRight}
-          /*legends={this.legends}*/
+          enableGridX={false}
         />
       </div>
     );
