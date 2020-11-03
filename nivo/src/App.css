@@ -1,0 +1,82 @@
+.App {
+  margin: auto;
+  width: 75%;
+}
+
+.title {
+  padding: 50px 0 0;
+  text-align: center;
+}
+
+.charts-title {
+  text-align: left;
+  display: block;
+  margin-top: 5rem;
+}
+
+.chart-title {
+  text-align: left;
+}
+
+.text {
+  padding: 5px;
+  font-size: small;
+  text-align: center;
+}
+
+.chart-container {
+  position: relative;
+  height: 40vh;
+  padding-bottom: 2em;
+  text-align: right;
+}
+
+.button {
+  position: absolute;
+  right: 0;
+}
+
+.chart-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chart-grid > * {
+  flex: 1 1 250px;
+  margin: 5px;
+}
+
+.chart-info-text {
+  text-align: left;
+  font-style: italic;
+}
+
+.aligned-left p {
+  text-align: left;
+  padding-top: 1rem;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
