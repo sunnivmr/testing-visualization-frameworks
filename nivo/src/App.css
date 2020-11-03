@@ -1,21 +1,27 @@
 .App {
   margin: auto;
   width: 75%;
-  text-align: center;
 }
 
 .title {
   padding: 50px 0 0;
+  text-align: center;
+}
+
+.charts-title {
+  text-align: left;
+  display: block;
+  margin-top: 5rem;
 }
 
 .chart-title {
-  display: block;
-  margin-top: 5rem;
+  text-align: left;
 }
 
 .text {
   padding: 5px;
   font-size: small;
+  text-align: center;
 }
 
 .chart-container {

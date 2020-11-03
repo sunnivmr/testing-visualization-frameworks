@@ -10,7 +10,7 @@ class LineChart extends React.Component {
   green = "rgba(100, 200, 100, 0.5)";
   blue = "rgba(50, 150, 200, 0.5)";
 
-  axisRight = {};
+  axisTop = {};
 
   render() {
     return (
@@ -22,19 +22,16 @@ class LineChart extends React.Component {
           margin={config.margin}
           legends={config.legends}
           colors={
-            this.yellow
+            this.blue
           }
           lineWidth={5}
           pointSize={10}
           pointColor={"white"}
-          pointBorderColor={this.blue}
+          pointBorderColor={this.yellow}
           pointBorderWidth={2}
           enablePointLabel
-          enableGridX={false} /*
-          padding={0.5}
-          
-          enableLabel={false}
-          axisRight={this.axisRight}
+          enableGridX={false} 
+          axisTop={this.axisTop}
           /*legends={this.legends}*/
         />
       </div>

@@ -1,10 +1,10 @@
 import React from "react";
-import { ResponsiveLine } from "@nivo/line";
+import { ResponsiveBar } from "@nivo/bar";
 
 import data from "./data";
 import config from "./config";
 
-class LineChart extends React.Component {
+class BarChart extends React.Component {
   yellow = "rgba(255, 200, 100, 0.5)";
   pink = "rgba(235, 49, 170, 0.5)";
   green = "rgba(100, 200, 100, 0.5)";
@@ -15,24 +15,16 @@ class LineChart extends React.Component {
   render() {
     return (
       <div className="chart">
-        <h3 className="chart-title">Line chart</h3>
-        <ResponsiveLine
+        <h3 className="chart-title">Bar chart</h3>
+        <ResponsiveBar
           data={data}
           keys={config.keys}
+          indexBy="year"
           margin={config.margin}
           legends={config.legends}
-          colors={
-            this.yellow
-          }
-          lineWidth={5}
-          pointSize={10}
-          pointColor={"white"}
-          pointBorderColor={this.blue}
-          pointBorderWidth={2}
-          enablePointLabel
-          enableGridX={false} /*
           padding={0.5}
-          
+          colors={this.green}
+          borderRadius={2}
           enableLabel={false}
           axisRight={this.axisRight}
           /*legends={this.legends}*/
@@ -42,4 +34,4 @@ class LineChart extends React.Component {
   }
 }
 
-export default LineChart;
+export default BarChart;
