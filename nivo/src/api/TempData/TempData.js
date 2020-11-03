@@ -75,10 +75,6 @@ class TempData extends React.Component {
         tickValues: 5
     }}
 
-    /*
-    // Reference to export png
-    const chartRef = useRef(null);
-    const base64Image = chartRef.current.chartInstance.toBase64Image();*/
 
     return (
       <div className="apidata">
@@ -98,8 +94,6 @@ class TempData extends React.Component {
           <LineChartWithProps
             data={data} config={config}
           />
-
-          {/*button>Export to PNG</button>*/}
         </div>
       </div>
     );
