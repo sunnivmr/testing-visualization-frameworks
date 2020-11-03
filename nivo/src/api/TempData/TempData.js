@@ -5,8 +5,8 @@ import LineChartWithProps from "../../components/LineChart/LineChartWProps";
 class TempData extends React.Component {
   state = {
     loading: true,
-    dataType: "",
-    measurements: [],
+    measurementsData: [],
+    dataType: null,
     dateFrom: null,
     dateUntil: null,
     dataDescription: "",
@@ -15,7 +15,7 @@ class TempData extends React.Component {
 
   async componentDidMount() {
     const url =
-      "http://ibmrisvol.ibm.ntnu.no/data?from=2020-10-03T14%3A00%3A00&until=2020-10-03T14%3A10%3A00&identifier=1";
+      "http://ibmrisvol.ibm.ntnu.no/data?from=2020-03-01T03%3A00%3A00&until=2020-03-01T03%3A10%3A00&identifier=1";
     const response = await fetch(url);
     const data = await response.json();
     this.setState({
@@ -25,7 +25,6 @@ class TempData extends React.Component {
       measurementsData: data.data[0].measurements,
       loading: false,
     });
-    console.log(data);
     console.log(this.state.measurementsData);
   }
 
@@ -48,16 +47,33 @@ class TempData extends React.Component {
       data.time_stamp_utc.substring(11, 16)
     );
 
+    // Create array with objects to match input for ResponsiveLine
+    const data = [];
+    timestamps.forEach((timestamp, i) => data.push({x: [timestamp], y:measurements[i]})); 
+
+/*
+    timestamps.forEach((timestamp, i) => data[timestamp] = measurements[i]); 
+    dataArray.push(dataObject);*/
+
+    console.log(data);
+
+
     // Set config
     const config = {
-      keys: ["measurement"],
+      keys: "y",
       margin: {
         top: 50,
         right: 130,
         bottom: 50,
         left: 60,
       },
-    }
+      yScale:{
+        type: "linear", stacked: true, reverse: false,
+        min: 0.169, max: 0.173
+      },
+      axisLeft: {
+        tickValues: 5
+    }}
 
     /*
     // Reference to export png
@@ -78,8 +94,9 @@ class TempData extends React.Component {
         </div>
 
         <div className="chart">
+          {console.log(data)}
           <LineChartWithProps
-            data={measurements} config={config}
+            data={data} config={config}
           />
 
           {/*button>Export to PNG</button>*/}

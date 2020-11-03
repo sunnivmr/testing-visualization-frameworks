@@ -42,6 +42,7 @@ function App() {
           <h2>Data from API</h2>
         </div>
         <FetchData/>
+        <TempData/>
       </div>
       <div className="text aligned-left">
         <p>Sunniva Mathea Runde, Kaja Løvsjø Solberg</p>
