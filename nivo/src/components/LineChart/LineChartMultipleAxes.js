@@ -32,6 +32,8 @@ class LineChart extends React.Component {
           enablePointLabel
           enableGridX={false} 
           axisTop={this.axisTop}
+          curve={"cardinal"}
+          yScale={config.yScale}
           /*legends={this.legends}*/
         />
       </div>

@@ -6,4 +6,8 @@ export default {
     bottom: 50,
     left: 60,
   },
+  yScale:{
+    type: "linear", stacked: true, reverse: false,
+    min: 14, max: 24
+  },
 };
