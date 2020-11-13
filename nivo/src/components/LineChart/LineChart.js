@@ -29,6 +29,8 @@ class LineChart extends React.Component {
           pointBorderWidth={2}
           enablePointLabel
           enableGridX={false}
+          curve={"cardinal"}
+          yScale={config.yScale}
         />
       </div>
     );

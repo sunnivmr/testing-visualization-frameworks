@@ -1,0 +1,52 @@
+.App {
+  margin: auto;
+  width: 75%;
+  text-align: center;
+}
+
+.title {
+  padding: 50px 0 0;
+}
+
+.chart-title {
+  display: block;
+  margin-top: 5rem;
+}
+
+.text {
+  padding: 5px;
+  font-size: small;
+}
+
+.chart-container {
+  position: relative;
+  height: 40vh;
+  padding-bottom: 2em;
+  text-align: right;
+}
+
+.button {
+  position: absolute;
+  right: 0;
+}
+
+.chart-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chart-grid > * {
+  flex: 1 1 250px;
+  margin: 5px;
+}
+
+.chart-info-text {
+  text-align: left;
+  font-style: italic;
+}
+
+.aligned-left p {
+  text-align: left;
+  padding-top: 1rem;
+}

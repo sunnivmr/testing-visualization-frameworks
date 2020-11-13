@@ -31,7 +31,8 @@ function LineChartWProps(props) {
           pointBorderWidth={2}
           enablePointLabel
           enableGridX={false} 
-          yScale={config.yScale}/>
+          yScale={config.yScale}
+          curve={"cardinal"}/>
     </div>
   );
 }
