@@ -62,7 +62,7 @@ export default class BarChart extends Component {
     return (
       <div>
         <h4>Average rainfall</h4>
-        <VictoryChart domainPadding={20} padding={chartPadding}>
+        <VictoryChart domainPadding={40} padding={chartPadding}>
           <VictoryAxis
             style={xAxisStyle}
             tickCount={3}
