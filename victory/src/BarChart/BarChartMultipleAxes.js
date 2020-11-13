@@ -39,8 +39,9 @@ const xAxisStyle = {
 
 const secondYAxisStyle = {
   axisLabel: {
-    padding: 45,
+    padding: -30,
   },
+  tickLabels: { textAnchor: "start" },
 };
 
 const yAxisStyle = {
