@@ -51,6 +51,13 @@ const yAxisStyle = {
   },
 };
 
+const secondYAxisStyle = {
+  axisLabel: {
+    padding: -45,
+  },
+  tickLabels: { textAnchor: "start" },
+};
+
 const chartPadding = {
   top: 0,
   right: 60,
@@ -76,6 +83,14 @@ export class LineChart extends Component {
             tickFormat={(y) => y.toFixed(2)}
             label="Temp (℃)"
             style={yAxisStyle}
+          />
+          <VictoryAxis
+            style={secondYAxisStyle}
+            dependentAxis
+            offsetX={390}
+            tickCount={4}
+            label="Temp (°F)"
+            tickFormat={(y) => (y * 1.8 + 32).toFixed(2)}
           />
           <VictoryLine
             interpolation="natural"

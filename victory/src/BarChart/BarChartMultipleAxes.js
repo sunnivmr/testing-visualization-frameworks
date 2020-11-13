@@ -37,6 +37,13 @@ const xAxisStyle = {
   },
 };
 
+const secondYAxisStyle = {
+  axisLabel: {
+    padding: -30,
+  },
+  tickLabels: { textAnchor: "start" },
+};
+
 const yAxisStyle = {
   axisLabel: {
     padding: 45,
@@ -55,7 +62,7 @@ export default class BarChart extends Component {
     return (
       <div>
         <h4>Average rainfall</h4>
-        <VictoryChart domainPadding={20} padding={chartPadding}>
+        <VictoryChart domainPadding={40} padding={chartPadding}>
           <VictoryAxis
             style={xAxisStyle}
             tickCount={3}
@@ -67,6 +74,14 @@ export default class BarChart extends Component {
             dependentAxis
             tickCount={5}
             label="Rainfall (mm)"
+          />
+          <VictoryAxis
+            style={secondYAxisStyle}
+            dependentAxis
+            offsetX={390}
+            tickCount={7}
+            label="Rainfall (cm)"
+            tickFormat={(y) => y / 10}
           />
           <VictoryBar
             style={style}
