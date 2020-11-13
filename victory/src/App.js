@@ -1,4 +1,8 @@
 import "./App.css";
+import BarChart from "./BarChart/BarChart";
+import LineChart from "./LineChart/LineChart";
+import BarChartMultipleAxes from "./BarChart/BarChartMultipleAxes";
+import LineChartMultipleAxes from "./LineChart/LineChartMultipleAxes";
 
 function App() {
   return (
@@ -12,11 +16,17 @@ function App() {
       <div className="chart-title">
         <h2>Normal charts</h2>
       </div>
-      <div className="chart-grid normal-charts"></div>
+      <div className="chart-grid normal-charts">
+        <BarChart />
+        <LineChart />
+      </div>
       <div className="chart-title">
         <h2>Multiple axes charts</h2>
       </div>
-      <div className="chart-grid multiple-axes-charts"></div>
+      <div className="chart-grid multiple-axes-charts">
+        <BarChartMultipleAxes />
+        <LineChartMultipleAxes />
+      </div>
       <div className="api-chart">
         <div className="chart-title">
           <h2>Data from API</h2>

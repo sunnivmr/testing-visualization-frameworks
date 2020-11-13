@@ -1,22 +1,30 @@
 import React, { Component } from "react";
-import { VictoryChart, VictoryAxis, VictoryBar } from "victory";
+import { VictoryChart, VictoryAxis, VictoryLine, VictoryLabel } from "victory";
 
 const data = [
   {
     time_stamp_utc: "2020-10-16T09:00:00",
-    measurement: 200,
+    measurement: 5.201,
   },
   {
     time_stamp_utc: "2020-10-16T09:01:00",
-    measurement: 210,
+    measurement: 5.253,
   },
   {
     time_stamp_utc: "2020-10-16T09:02:00",
-    measurement: 197,
+    measurement: 5.228,
   },
   {
     time_stamp_utc: "2020-10-16T09:03:00",
-    measurement: 216,
+    measurement: 5.233,
+  },
+  {
+    time_stamp_utc: "2020-10-16T09:04:00",
+    measurement: 5.216,
+  },
+  {
+    time_stamp_utc: "2020-10-16T09:05:00",
+    measurement: 5.219,
   },
 ];
 
@@ -25,9 +33,9 @@ const pink = "rgba(235, 49, 170, 0.5)";
 const green = "rgba(100, 200, 100, 0.5)";
 const blue = "rgba(100, 100, 200, 0.5)";
 
-const style = {
+const lineStyle = {
   data: {
-    fill: green,
+    stroke: yellow,
   },
 };
 
@@ -50,32 +58,36 @@ const chartPadding = {
   left: 60,
 };
 
-export default class BarChart extends Component {
+export class LineChart extends Component {
   render() {
     return (
       <div>
-        <h4>Average rainfall</h4>
-        <VictoryChart domainPadding={20} padding={chartPadding}>
+        <h4>Air temperature</h4>
+        <VictoryChart domainPadding={30} padding={chartPadding}>
           <VictoryAxis
-            style={xAxisStyle}
-            tickCount={3}
+            tickCount={5}
             tickFormat={(x) => x.slice(11, 16)}
             label="Time (h:s)"
+            style={xAxisStyle}
           />
           <VictoryAxis
-            style={yAxisStyle}
             dependentAxis
-            tickCount={5}
-            label="Rainfall (mm)"
+            tickCount={4}
+            tickFormat={(y) => y.toFixed(2)}
+            label="Temp (℃)"
+            style={yAxisStyle}
           />
-          <VictoryBar
-            style={style}
+          <VictoryLine
+            interpolation="natural"
+            style={lineStyle}
             data={data}
-            x="time_stamp_utc"
             y="measurement"
+            x="time_stamp_utc"
           />
         </VictoryChart>
       </div>
     );
   }
 }
+
+export default LineChart;

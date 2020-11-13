@@ -4,19 +4,19 @@ import { VictoryChart, VictoryAxis, VictoryBar } from "victory";
 const data = [
   {
     time_stamp_utc: "2020-10-16T09:00:00",
-    measurement: 200,
+    measurement: 110,
   },
   {
     time_stamp_utc: "2020-10-16T09:01:00",
-    measurement: 210,
+    measurement: 115,
   },
   {
     time_stamp_utc: "2020-10-16T09:02:00",
-    measurement: 197,
+    measurement: 187,
   },
   {
     time_stamp_utc: "2020-10-16T09:03:00",
-    measurement: 216,
+    measurement: 112,
   },
 ];
 
@@ -27,7 +27,7 @@ const blue = "rgba(100, 100, 200, 0.5)";
 
 const style = {
   data: {
-    fill: green,
+    fill: blue,
   },
 };
 
