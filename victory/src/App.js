@@ -1,8 +1,9 @@
 import "./App.css";
-import BarChart from "./BarChart/BarChart";
-import LineChart from "./LineChart/LineChart";
-import BarChartMultipleAxes from "./BarChart/BarChartMultipleAxes";
-import LineChartMultipleAxes from "./LineChart/LineChartMultipleAxes";
+import BarChart from "./components/BarChart/BarChart";
+import LineChart from "./components/LineChart/LineChart";
+import BarChartMultipleAxes from "./components/BarChart/BarChartMultipleAxes";
+import LineChartMultipleAxes from "./components/LineChart/LineChartMultipleAxes";
+import TempData from "./api/TempData/TempData";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       <div className="api-chart">
         <div className="chart-title">
           <h2>Data from API</h2>
+          <TempData />
         </div>
       </div>
       <div className="text aligned-left">
