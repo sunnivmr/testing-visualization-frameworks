@@ -13,8 +13,7 @@ class BarChart extends React.Component {
   render() {
     return (
       <div className="chart">
-        <h3 className="chart-title">Bar chart
-        </h3>
+        <h3 className="chart-title">Bar chart</h3>
         <ResponsiveBar
           data={data}
           keys={config.keys}
