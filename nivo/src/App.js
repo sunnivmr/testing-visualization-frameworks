@@ -8,7 +8,6 @@ import LineChart from "./components/LineChart/LineChart";
 import BarChartMultipleAxes from "./components/BarChart/BarChartMultipleAxes";
 import LineChartMultipleAxes from "./components/LineChart/LineChartMultipleAxes";
 
-
 import "./App.css";
 import "./style/chart.css";
 import TempData from "./api/TempData/TempData";
@@ -29,20 +28,19 @@ function App() {
         <LineChart />
         <BarChart />
       </div>
-      
+
       <div className="charts-title">
         <h2>Multiple axes charts</h2>
         <div className="chart-grid normal-charts">
-        <BarChartMultipleAxes/>
-        <LineChartMultipleAxes/></div>
+          <BarChartMultipleAxes />
+          <LineChartMultipleAxes />
+        </div>
       </div>
-      <div className="chart-grid multiple-axes-charts"></div>
       <div className="api-chart">
         <div className="charts-title">
           <h2>Data from API</h2>
         </div>
-        <FetchData/>
-        <TempData/>
+        <TempData />
       </div>
       <div className="text aligned-left">
         <p>Sunniva Mathea Runde, Kaja Løvsjø Solberg</p>
