@@ -15,6 +15,7 @@ export default class Face extends React.Component {
   componentDidMount() {
     let width = 500;
     let height = 500;
+
     let svg = d3
       .select(this.myFace.current)
       .append("svg")
@@ -57,10 +58,10 @@ export default class Face extends React.Component {
 
     eyebrowsGroup
       .transition()
-      .duration(2000)
+      .duration(500)
       .attr("transform", `translate(0, ${eyebrowYOffset - 30})`)
       .transition()
-      .duration(2000)
+      .duration(500)
       .attr("transform", `translate(0, ${eyebrowYOffset})`);
 
     const leftEyebrow = eyebrowsGroup

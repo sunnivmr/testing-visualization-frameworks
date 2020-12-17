@@ -1,6 +1,8 @@
 import React from "react";
-import BarChart from "./components/BarChart/BarChart";
+//import BarChart from "./components/BarChart/BarChart";
+
 import Face from "./learning/Face/Face";
+import BarChart from "./learning/BarChart/BarChart";
 
 import "./App.css";
 
@@ -19,13 +21,12 @@ class App extends React.Component {
         </div>
         <div>
           <Face />
+          <BarChart />
         </div>
         <div className="chart-title">
           <h2>Normal charts</h2>
         </div>
-        <div className="chart-grid normal-charts">
-          <BarChart />
-        </div>
+        <div className="chart-grid normal-charts"></div>
         <div className="chart-title">
           <h2>Multiple axes charts</h2>
         </div>
