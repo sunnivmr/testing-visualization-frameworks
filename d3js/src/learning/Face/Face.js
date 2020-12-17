@@ -1,23 +1,17 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 
 import * as d3 from "d3";
 
-export default class Face extends React.Component {
-  constructor(props) {
-    super(props);
-    this.myFace = React.createRef();
-    this.yellow = "rgba(255, 230, 83, 1)";
-    this.pink = "rgba(235, 49, 170, 1)";
-    this.green = "rgba(100, 200, 100, 0.5)";
-    this.blue = "rgba(100, 180, 250, 1)";
-  }
+export default function Face(props) {
+  const myFace = React.createRef(); // Reference to element
+  const yellow = "rgba(255, 230, 83, 1)"; // Smiley-yellow
 
-  componentDidMount() {
+  useEffect(() => {
     let width = 500;
     let height = 500;
 
     let svg = d3
-      .select(this.myFace.current)
+      .select(myFace.current)
       .append("svg")
       .attr("width", width)
       .attr("height", height);
@@ -26,10 +20,7 @@ export default class Face extends React.Component {
       .append("g")
       .attr("transform", `translate(${width / 2}, ${height / 2})`);
 
-    const circle = group
-      .append("circle")
-      .attr("r", 200)
-      .attr("fill", this.yellow);
+    const circle = group.append("circle").attr("r", 200).attr("fill", yellow);
 
     const eyeSpacing = 70;
     const eyeYOffset = -50;
@@ -85,14 +76,12 @@ export default class Face extends React.Component {
         endAngle: (Math.PI * 3) / 2 - 0.25,
       })
     );
-  }
+  }, []);
 
-  render() {
-    return (
-      <div className="chart-section">
-        <h4 className="chart-title">Face</h4>
-        <div className="face" ref={this.myFace} />
-      </div>
-    );
-  }
+  return (
+    <div className="chart-section">
+      <h4 className="chart-title">Face</h4>
+      <div className="face" ref={myFace} />
+    </div>
+  );
 }
