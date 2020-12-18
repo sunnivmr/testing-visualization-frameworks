@@ -19,14 +19,12 @@ class App extends React.Component {
         <div className="chart-title">
           <h2>Learn D3.js</h2>
         </div>
-        <div>
-          <Face />
+        <div className="chart-grid">
           <BarChart />
         </div>
         <div className="chart-title">
           <h2>Normal charts</h2>
         </div>
-        <div className="chart-grid normal-charts"></div>
         <div className="chart-title">
           <h2>Multiple axes charts</h2>
         </div>

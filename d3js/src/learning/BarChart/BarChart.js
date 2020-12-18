@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { csv, select, scaleLinear, scaleBand, max } from "d3";
 import data from "./data.csv";
@@ -10,19 +10,22 @@ export default function BarChart(props) {
 
   useEffect(() => {
     // Width and height of barchart-element
-    const width = myBarChart.current.clientWidth;
-    const height = myBarChart.current.clientHeight;
+    let width = myBarChart.current.clientWidth;
+    let height = myBarChart.current.clientHeight;
 
-    console.log("Width: " + width + "/n height: " + height);
+    console.log("Width: " + width + " height: " + height);
 
     // Render the data
     const render = (data) => {
-      // Create the linear scale
+      // Scale the linear quantative elements
       const xScale = scaleLinear()
         .domain([0, max(data, (d) => d.population)])
-        .range([0, 100]);
+        .range([0, width]);
 
-      const yScale = scaleBand().domain(data.map((d) => d.country));
+      // Scale the ordinal bands
+      const yScale = scaleBand()
+        .domain(data.map((d) => d.country))
+        .range([0, height]);
 
       console.log(yScale.domain());
 
@@ -31,6 +34,7 @@ export default function BarChart(props) {
         .data(data)
         .enter()
         .append("rect")
+        .attr("y", (d) => yScale(d.country))
         .attr("width", (d) => xScale(d.population))
         .attr("height", yScale.bandwidth());
     };

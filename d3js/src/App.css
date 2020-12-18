@@ -6,3 +6,19 @@
 .chart-section h4 {
   text-align: left;
 }
+
+.chart-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chart-grid > * {
+  flex: 1 1 250px;
+  margin: 5px;
+}
+
+.barchart {
+  width: 500px;
+  height: 500px;
+}

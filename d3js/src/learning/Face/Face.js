@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import * as d3 from "d3";
 
@@ -7,8 +7,9 @@ export default function Face(props) {
   const yellow = "rgba(255, 230, 83, 1)"; // Smiley-yellow
 
   useEffect(() => {
-    let width = 500;
-    let height = 500;
+    // Width and height of barchart-element
+    let width = myFace.current.clientWidth;
+    let height = myFace.current.clientHeight;
 
     let svg = d3
       .select(myFace.current)
