@@ -1,88 +1,53 @@
-import React, { useEffect } from "react";
+import { BackgroundCircle } from "./BackgroundCircle";
+import { Eyes } from "./Eyes";
+import { Mouth } from "./Mouth";
+import { FaceContainer } from "./FaceContainer";
 
-import * as d3 from "d3";
+/*
+const width = 960;
+const height = 500;
+const centerX = width / 2;
+const centerY = height / 2;
+const strokeWidth = 0;
+const eyeOffsetX = 85;
 
-export default function Face(props) {
-  const myFace = React.createRef(); // Reference to element
-  const yellow = "rgba(255, 230, 83, 1)"; // Smiley-yellow
+const mouthWidth = 15;
+const mouthRadius = 140;
 
-  useEffect(() => {
-    // Width and height of barchart-element
-    let width = myFace.current.clientWidth;
-    let height = myFace.current.clientHeight;
+const eyeOffsetY = 60;
+const eyeRadius = 30;
 
-    let svg = d3
-      .select(myFace.current)
-      .append("svg")
-      .attr("width", width)
-      .attr("height", height);
+const yellow = "rgba(255, 230, 83, 1)";*/
 
-    const group = svg
-      .append("g")
-      .attr("transform", `translate(${width / 2}, ${height / 2})`);
-
-    const circle = group.append("circle").attr("r", 200).attr("fill", yellow);
-
-    const eyeSpacing = 70;
-    const eyeYOffset = -50;
-    const eyeRadius = 30;
-    const eyebrowWidth = 60;
-    const eyebrowHeight = 15;
-    const eyebrowYOffset = eyeYOffset - eyebrowWidth / 3;
-
-    const eyesGroup = group
-      .append("g")
-      .attr("transform", `translate(0, ${eyeYOffset})`);
-
-    const leftEye = eyesGroup
-      .append("circle")
-      .attr("r", eyeRadius)
-      .attr("cx", -eyeSpacing);
-
-    const rightEye = eyesGroup
-      .append("circle")
-      .attr("r", eyeRadius)
-      .attr("cx", +eyeSpacing);
-
-    const eyebrowsGroup = eyesGroup
-      .append("g")
-      .attr("transform", `translate(0, ${eyebrowYOffset})`);
-
-    eyebrowsGroup
-      .transition()
-      .duration(500)
-      .attr("transform", `translate(0, ${eyebrowYOffset - 30})`)
-      .transition()
-      .duration(500)
-      .attr("transform", `translate(0, ${eyebrowYOffset})`);
-
-    const leftEyebrow = eyebrowsGroup
-      .append("rect")
-      .attr("x", -eyeSpacing - eyebrowWidth / 2)
-      .attr("width", eyebrowWidth)
-      .attr("height", eyebrowHeight);
-
-    const rightEyebrow = eyebrowsGroup
-      .append("rect")
-      .attr("x", eyeSpacing - eyebrowWidth / 2)
-      .attr("width", eyebrowWidth)
-      .attr("height", eyebrowHeight);
-
-    const mouth = group.append("path").attr(
-      "d",
-      d3.arc()({
-        innerRadius: 120,
-        outerRadius: 140,
-        startAngle: Math.PI / 2 + 0.25,
-        endAngle: (Math.PI * 3) / 2 - 0.25,
-      })
-    );
-  }, []);
-
-  return (
-    <div className="chart-section">
-      <h4 className="chart-title">Face</h4>
-      <div className="face" ref={myFace} />
-    </div>
-  );
-}
+export const Face = ({
+  width,
+  height,
+  centerX,
+  centerY,
+  strokeWidth,
+  eyeOffsetX,
+  eyeOffsetY,
+  eyeRadius,
+  mouthRadius,
+  mouthWidth,
+  color,
+}) => (
+  <FaceContainer
+    width={width}
+    height={height}
+    centerX={centerX}
+    centerY={centerY}
+  >
+    <BackgroundCircle
+      radius={centerY - strokeWidth / 2}
+      strokeWidth={strokeWidth}
+      color={color}
+    />
+    <Eyes
+      eyeOffsetX={eyeOffsetX}
+      eyeOffsetY={eyeOffsetY}
+      eyeRadius={eyeRadius}
+    />
+    <Mouth mouthRadius={mouthRadius} mouthWidth={mouthWidth} />
+  </FaceContainer>
+);

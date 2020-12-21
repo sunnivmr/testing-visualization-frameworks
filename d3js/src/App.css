@@ -13,12 +13,22 @@
   justify-content: center;
 }
 
+.faces > * {
+  flex: 1 1 250px;
+  margin: 5px;
+}
+
 .chart-grid > * {
   flex: 1 1 250px;
   margin: 5px;
 }
 
+.chart-section {
+  margin: 0;
+}
+
 .barchart {
   width: 500px;
   height: 500px;
+  margin: 20px 10px 10px 0;
 }
