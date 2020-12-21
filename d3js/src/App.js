@@ -1,6 +1,7 @@
 import React from "react";
 import { Faces } from "./learning/Face/Faces";
 import { ColorData } from "./learning/ColorData/ColorData";
+import { BarChart } from "./learning/BarChart/BarChart";
 
 import "./App.css";
 
@@ -20,6 +21,7 @@ class App extends React.Component {
         <div className="chart-grid">
           <Faces />
           <ColorData />
+          <BarChart />
         </div>
         <div className="chart-title">
           <h2>Normal charts</h2>

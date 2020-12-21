@@ -1,26 +1,51 @@
-import React from "react";
-import * as d3 from "d3";
+import React, { useState, useEffect, useCallback } from "react";
+import { csv, arc, pie } from "d3";
+
+// Data about CSS colors
+const csvUrl =
+  "https://gist.githubusercontent.com/curran/b236990081a24761f7000567094914e0/raw/cssNamedColors.csv";
+
+const width = 500;
+const height = 500;
+const centerX = width / 2;
+const centerY = height / 2;
+
+const pieArc = arc().innerRadius(0).outerRadius(width);
 
 export const ColorData = () => {
-  const csvUrl =
-    "https://gist.githubusercontent.com/curran/b236990081a24761f7000567094914e0/raw/cssNamedColors.csv";
+  const [data, setData] = useState(null);
 
-  // Fetch data asyncronously
-  const fetchText = async (url) => {
-    const response = await fetch(url);
-    return await response.text();
-  };
+  // Parse the csv data and set the data value
+  //d3.csv(csvUrl).then(setData);
 
-  // Console.log that data
-  fetchText(csvUrl).then((text) => {
-    const data = d3.csvParse(text);
-    console.log(data.length + "rows");
-    console.log(data.columns.length + "columns");
-  });
+  useEffect(() => {
+    csv(csvUrl).then(setData);
+  }, []);
+
+  if (!data) {
+    return <pre>Loading ...</pre>;
+  }
+
+  const colorPie = pie().value(1);
 
   return (
     <div className="chart-section">
-      <h4 className="chart-title">Color data</h4>
+      <h4 className="chart-title">CSS Color Data</h4>
+      <div className="data">
+        <svg width={width} height={height}>
+          <g transform={`translate(${centerX},${centerY})`}>
+            {colorPie(data).map((d, i) => (
+              <path
+                fill={d.data["RGB hex value"]}
+                d={pieArc({
+                  startAngle: (i / data.length) * 2 * Math.PI,
+                  endAngle: ((i + 1) / data.length) * 2 * Math.PI,
+                })}
+              />
+            ))}
+          </g>
+        </svg>
+      </div>
     </div>
   );
 };

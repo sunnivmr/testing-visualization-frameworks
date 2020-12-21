@@ -10,7 +10,7 @@
 .chart-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: left;
 }
 
 .faces > * {
@@ -20,11 +20,11 @@
 
 .chart-grid > * {
   flex: 1 1 250px;
-  margin: 5px;
 }
 
 .chart-section {
   margin: 0;
+  text-align: left;
 }
 
 .barchart {
