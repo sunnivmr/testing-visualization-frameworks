@@ -1,6 +1,5 @@
 import React from "react";
 import { Faces } from "./learning/Face/Faces";
-import { FollowMouse } from "./learning/FollowMouse/FollowMouse";
 import { ColorData } from "./learning/ColorData/ColorData";
 
 import "./App.css";
