@@ -10,7 +10,7 @@ import "./chart.css";
 
 const width = 700;
 const height = 400;
-const margin = { top: 10, right: 50, bottom: 50, left: 100 };
+const margin = { top: 10, right: 50, bottom: 50, left: 70 };
 
 const innerHeight = height - margin.top - margin.bottom;
 const innerWidth = width - margin.right - margin.left;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { scaleBand, scaleLinear, extent, format } from "d3";
+import { scaleTime, scaleLinear, extent, format, timeFormat } from "d3";
 import { useData } from "./useData";
 
 import { AxisBottom } from "./AxisBottom";
@@ -10,26 +10,26 @@ import "./chart.css";
 
 const width = 700;
 const height = 400;
-const margin = { top: 10, right: 50, bottom: 50, left: 100 };
+const margin = { top: 10, right: 50, bottom: 50, left: 70 };
+const circleRadius = 2;
 
 const innerHeight = height - margin.top - margin.bottom;
 const innerWidth = width - margin.right - margin.left;
 
 // X values
-const xValue = (d) => d.sepal_length;
-const xAxisLabel = "Sepal length";
+const xValue = (d) => d.timestamp;
+const xAxisLabel = "Time";
 const xAxisLabelOffset = 40;
 
 // Y values
-const yValue = (d) => d.sepal_width;
-const yAxisLabel = "Sepal width";
+const yValue = (d) => d.temperature;
+const yAxisLabel = "Temperature";
 const yAxisLabelOffset = 45;
 
 // Axis formats
-const siFormat = format(".2s");
-const xAxisTickFormat = (tickValue) => siFormat(tickValue).replace("G", "B");
+const xAxisTickFormat = timeFormat("%a");
 
-export const ScatterPlot = () => {
+export const LineChart = () => {
   const data = useData();
 
   if (!data) {
@@ -37,7 +37,7 @@ export const ScatterPlot = () => {
   }
 
   // Linear scale for x values
-  const xScale = scaleLinear()
+  const xScale = scaleTime()
     .domain(extent(data, xValue)) // extent-function replaces min, max
     .range([0, innerWidth])
     .nice(); // Adjusts the axis to prevent overlap
@@ -45,14 +45,15 @@ export const ScatterPlot = () => {
   // Linear scale for y values
   const yScale = scaleLinear()
     .domain(extent(data, yValue))
-    .range([0, innerHeight]);
+    .range([innerHeight, 0])
+    .nice();
 
   // Axes
   console.log(xScale.ticks());
 
   return (
     <div className="big-chart-section">
-      <h4 className="section-title">Scatter Plot (Iris Dataset)</h4>
+      <h4 className="section-title">Line Chart (Temperature)</h4>
       <div className="data">
         <svg width={width} height={height}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
@@ -60,9 +61,9 @@ export const ScatterPlot = () => {
               xScale={xScale}
               innerHeight={innerHeight}
               tickFormat={xAxisTickFormat}
-              tickOffset={7}
+              tickOffset={10}
             />
-            <AxisLeft yScale={yScale} innerWidth={innerWidth} />
+            <AxisLeft yScale={yScale} innerWidth={innerWidth} tickOffset={7} />
             <Marks
               data={data}
               xScale={xScale}
@@ -70,7 +71,7 @@ export const ScatterPlot = () => {
               xValue={xValue}
               yValue={yValue}
               tooltipFormat={xAxisTickFormat}
-              circleRadius={7}
+              circleRadius={circleRadius}
             />
             <text
               x={innerWidth / 2}

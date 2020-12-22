@@ -8,7 +8,7 @@ export const Marks = ({
 }) =>
   data.map((d, i) => (
     <rect
-      className="mark"
+      className="mark-bar"
       key={yValue(d)}
       x={0}
       y={yScale(yValue(d))}

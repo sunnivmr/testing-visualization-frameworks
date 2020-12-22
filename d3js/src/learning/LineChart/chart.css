@@ -1,6 +1,14 @@
 /* Marks styling */
-.mark-scatter {
-  fill: rgb(211, 156, 248);
+.mark-circle {
+  fill: rgb(156, 204, 248);
+}
+
+.mark-line {
+  fill: none;
+  stroke: rgb(156, 204, 248);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-linecap: round;
 }
 
 .axis-label {

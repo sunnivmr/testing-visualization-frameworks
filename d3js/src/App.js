@@ -1,8 +1,9 @@
 import React from "react";
-import { Faces } from "./learning/Face/Faces";
-import { ColorData } from "./learning/ColorData/ColorData";
+// import { Faces } from "./learning/Face/Faces";
+// import { ColorData } from "./learning/ColorData/ColorData";
 import { BarChart } from "./learning/BarChart/BarChart";
 import { ScatterPlot } from "./learning/ScatterPlot/ScatterPlot";
+import { LineChart } from "./learning/LineChart/LineChart";
 
 import "./App.css";
 
@@ -20,10 +21,11 @@ class App extends React.Component {
           <h2>Learn D3.js</h2>
         </div>
         <div className="chart-grid">
-          <Faces />
-          <ColorData />
+          {/**<Faces />
+          <ColorData />**/}
           <BarChart />
           <ScatterPlot />
+          <LineChart />
         </div>
         <div className="section-title">
           <h2>Normal charts</h2>
