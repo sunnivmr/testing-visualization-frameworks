@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { scaleBand, scaleLinear, max, format } from "d3";
 import { useData } from "./useData";
 
@@ -40,9 +40,6 @@ export const BarChart = () => {
   const xScale = scaleLinear()
     .domain([0, max(data, xValue)])
     .range([0, innerWidth]);
-
-  // Axes
-  console.log(xScale.ticks());
 
   return (
     <div className="big-chart-section">

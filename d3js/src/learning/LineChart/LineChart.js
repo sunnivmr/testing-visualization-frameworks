@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { scaleTime, scaleLinear, extent, format, timeFormat } from "d3";
+import React from "react";
+import { scaleTime, scaleLinear, extent, timeFormat } from "d3";
 import { useData } from "./useData";
 
 import { AxisBottom } from "./AxisBottom";
@@ -47,9 +47,6 @@ export const LineChart = () => {
     .domain(extent(data, yValue))
     .range([innerHeight, 0])
     .nice();
-
-  // Axes
-  console.log(xScale.ticks());
 
   return (
     <div className="big-chart-section">
