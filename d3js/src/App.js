@@ -1,8 +1,7 @@
 import React from "react";
-//import BarChart from "./components/BarChart/BarChart";
-
-import Face from "./learning/Face/Face";
-import BarChart from "./learning/BarChart/BarChart";
+import { Faces } from "./learning/Face/Faces";
+import { ColorData } from "./learning/ColorData/ColorData";
+import { BarChart } from "./learning/BarChart/BarChart";
 
 import "./App.css";
 
@@ -16,23 +15,23 @@ class App extends React.Component {
         <div className="text">
           <p>Testing D3.js library for Master's Thesis 2020/2021</p>
         </div>
-        <div className="chart-title">
+        <div className="section-title">
           <h2>Learn D3.js</h2>
         </div>
-        <div>
-          <Face />
+        <div className="chart-grid">
+          <Faces />
+          <ColorData />
           <BarChart />
         </div>
-        <div className="chart-title">
+        <div className="section-title">
           <h2>Normal charts</h2>
         </div>
-        <div className="chart-grid normal-charts"></div>
-        <div className="chart-title">
+        <div className="section-title">
           <h2>Multiple axes charts</h2>
         </div>
         <div className="chart-grid multiple-axes-charts"></div>
         <div className="api-chart">
-          <div className="chart-title">
+          <div className="section-title">
             <h2>Data from API</h2>
           </div>
         </div>

@@ -23,7 +23,7 @@ const xValue = (d) => d.Population;
 const siFormat = format(".2s");
 const xAxisTickFormat = (tickValue) => siFormat(tickValue).replace("G", "B");
 
-export const BarChart = () => {
+export const ScatterPlot = () => {
   const data = useData();
 
   if (!data) {
