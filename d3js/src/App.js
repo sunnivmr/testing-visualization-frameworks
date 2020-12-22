@@ -4,6 +4,7 @@ import React from "react";
 import { BarChart } from "./learning/BarChart/BarChart";
 import { ScatterPlot } from "./learning/ScatterPlot/ScatterPlot";
 import { LineChart } from "./learning/LineChart/LineChart";
+import { InteractiveChart } from "./learning/InteractiveChart/InteractiveChart";
 
 import "./App.css";
 
@@ -23,6 +24,7 @@ class App extends React.Component {
         <div className="chart-grid">
           {/**<Faces />
           <ColorData />**/}
+          <InteractiveChart />
           <BarChart />
           <ScatterPlot />
           <LineChart />
