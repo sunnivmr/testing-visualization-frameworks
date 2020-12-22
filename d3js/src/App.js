@@ -15,7 +15,7 @@ class App extends React.Component {
         <div className="text">
           <p>Testing D3.js library for Master's Thesis 2020/2021</p>
         </div>
-        <div className="chart-title">
+        <div className="section-title">
           <h2>Learn D3.js</h2>
         </div>
         <div className="chart-grid">
@@ -23,15 +23,15 @@ class App extends React.Component {
           <ColorData />
           <BarChart />
         </div>
-        <div className="chart-title">
+        <div className="section-title">
           <h2>Normal charts</h2>
         </div>
-        <div className="chart-title">
+        <div className="section-title">
           <h2>Multiple axes charts</h2>
         </div>
         <div className="chart-grid multiple-axes-charts"></div>
         <div className="api-chart">
-          <div className="chart-title">
+          <div className="section-title">
             <h2>Data from API</h2>
           </div>
         </div>
