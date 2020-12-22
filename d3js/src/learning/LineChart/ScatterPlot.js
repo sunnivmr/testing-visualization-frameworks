@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { scaleBand, scaleLinear, max, format } from "d3";
+import { scaleBand, scaleLinear, extent, format } from "d3";
 import { useData } from "./useData";
 
 import { AxisBottom } from "./AxisBottom";
@@ -10,14 +10,20 @@ import "./chart.css";
 
 const width = 700;
 const height = 400;
-const margin = { top: 10, right: 50, bottom: 60, left: 150 };
-const xAxisLabelOffset = 40;
+const margin = { top: 10, right: 50, bottom: 50, left: 100 };
 
 const innerHeight = height - margin.top - margin.bottom;
 const innerWidth = width - margin.right - margin.left;
 
-const yValue = (d) => d.Country;
-const xValue = (d) => d.Population;
+// X values
+const xValue = (d) => d.sepal_length;
+const xAxisLabel = "Sepal length";
+const xAxisLabelOffset = 40;
+
+// Y values
+const yValue = (d) => d.sepal_width;
+const yAxisLabel = "Sepal width";
+const yAxisLabelOffset = 45;
 
 // Axis formats
 const siFormat = format(".2s");
@@ -30,23 +36,23 @@ export const ScatterPlot = () => {
     return <pre>Loading ...</pre>;
   }
 
-  // Bandscale for country categories
-  const yScale = scaleBand()
-    .domain(data.map(yValue))
-    .range([0, innerHeight])
-    .paddingInner(0.2);
-
-  // Linear scale for country population
+  // Linear scale for x values
   const xScale = scaleLinear()
-    .domain([0, max(data, xValue)])
-    .range([0, innerWidth]);
+    .domain(extent(data, xValue)) // extent-function replaces min, max
+    .range([0, innerWidth])
+    .nice(); // Adjusts the axis to prevent overlap
+
+  // Linear scale for y values
+  const yScale = scaleLinear()
+    .domain(extent(data, yValue))
+    .range([0, innerHeight]);
 
   // Axes
   console.log(xScale.ticks());
 
   return (
     <div className="big-chart-section">
-      <h4 className="section-title">World Population Data</h4>
+      <h4 className="section-title">Scatter Plot (Iris Dataset)</h4>
       <div className="data">
         <svg width={width} height={height}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
@@ -54,15 +60,9 @@ export const ScatterPlot = () => {
               xScale={xScale}
               innerHeight={innerHeight}
               tickFormat={xAxisTickFormat}
+              tickOffset={7}
             />
-            <AxisLeft yScale={yScale} />
-            <text
-              x={innerWidth / 2}
-              y={innerHeight + xAxisLabelOffset}
-              className={"axis-label"}
-            >
-              Population
-            </text>
+            <AxisLeft yScale={yScale} innerWidth={innerWidth} />
             <Marks
               data={data}
               xScale={xScale}
@@ -70,7 +70,22 @@ export const ScatterPlot = () => {
               xValue={xValue}
               yValue={yValue}
               tooltipFormat={xAxisTickFormat}
+              circleRadius={7}
             />
+            <text
+              x={innerWidth / 2}
+              y={innerHeight + xAxisLabelOffset}
+              className={"axis-label"}
+            >
+              {xAxisLabel}
+            </text>
+            <text
+              className={"axis-label"}
+              transform={`translate(${-yAxisLabelOffset},
+                ${innerHeight / 2}) rotate(-90)`}
+            >
+              {yAxisLabel}
+            </text>
           </g>
         </svg>
       </div>

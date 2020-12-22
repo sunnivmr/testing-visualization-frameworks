@@ -2,6 +2,7 @@ import React from "react";
 import { Faces } from "./learning/Face/Faces";
 import { ColorData } from "./learning/ColorData/ColorData";
 import { BarChart } from "./learning/BarChart/BarChart";
+import { ScatterPlot } from "./learning/ScatterPlot/ScatterPlot";
 
 import "./App.css";
 
@@ -22,6 +23,7 @@ class App extends React.Component {
           <Faces />
           <ColorData />
           <BarChart />
+          <ScatterPlot />
         </div>
         <div className="section-title">
           <h2>Normal charts</h2>

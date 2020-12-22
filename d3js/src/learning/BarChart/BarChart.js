@@ -46,7 +46,7 @@ export const BarChart = () => {
 
   return (
     <div className="big-chart-section">
-      <h4 className="section-title">World Population Data</h4>
+      <h4 className="section-title">Bar Chart (World Population Data)</h4>
       <div className="data">
         <svg width={width} height={height}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
