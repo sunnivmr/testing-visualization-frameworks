@@ -1,3 +1,22 @@
 select {
   font-size: 1em;
 }
+
+.dropdowns {
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.dropdown-label {
+  margin-left: 30px;
+  margin-right: 10px;
+}
+
+.Dropdown-root {
+  min-width: 200px;
+  max-width: 350px;
+  display: inline-block;
+}

@@ -10,6 +10,11 @@
   fill: #635f5d;
 }
 
+.legend-text {
+  fill: #635f5d;
+  font-size: small;
+}
+
 /* Axes styling */
 
 .tick-line {
