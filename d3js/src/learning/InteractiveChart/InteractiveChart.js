@@ -21,7 +21,7 @@ const speciesColors = [setosaColor, versicolorColor, virginicaColor];
 
 const width = 700;
 const height = 400;
-const margin = { top: 10, right: 200, bottom: 50, left: 70 };
+const margin = { top: 10, right: 100, bottom: 50, left: 70 };
 const circleRadius = 7;
 
 const innerHeight = height - margin.top - margin.bottom;
@@ -50,6 +50,9 @@ const xAxisTickFormat = (tickValue) => siFormat(tickValue).replace("G", "B");
 
 export const InteractiveChart = () => {
   const data = useData();
+  const [hoveredValue, setHoveredValue] = useState(null); // Hovered value in color legend
+
+  console.log(hoveredValue);
 
   // Set initial attributes
   const [xAttribute, setXAttribute] = useState("petal_length");
@@ -76,7 +79,7 @@ export const InteractiveChart = () => {
   */
 
   if (!data) {
-    return <pre>Loading ...</pre>;
+    return <pre></pre>;
   }
 
   // Linear scale for x values
@@ -94,8 +97,6 @@ export const InteractiveChart = () => {
   const colorScale = scaleOrdinal()
     .domain(data.map(colorValue))
     .range(speciesColors);
-
-  console.log(xAttribute);
 
   return (
     <div className="big-chart-section">
@@ -128,7 +129,11 @@ export const InteractiveChart = () => {
               <text className="axis-label" textAnchor="middle">
                 {colorLegendLabel}
               </text>
-              <ColorLegend colorScale={colorScale} tickSize={circleRadius} />
+              <ColorLegend
+                colorScale={colorScale}
+                tickSize={circleRadius}
+                onHover={setHoveredValue}
+              />
             </g>
             <Marks
               data={data}
