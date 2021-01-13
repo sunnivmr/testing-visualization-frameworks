@@ -2,6 +2,12 @@ select {
   font-size: 1em;
 }
 
+.color-legend {
+  fill: #635f5d;
+  font-size: small;
+  cursor: default;
+}
+
 .dropdowns {
   text-align: left;
   display: flex;

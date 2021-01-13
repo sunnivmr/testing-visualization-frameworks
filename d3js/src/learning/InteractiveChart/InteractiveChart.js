@@ -23,6 +23,7 @@ const width = 700;
 const height = 400;
 const margin = { top: 10, right: 100, bottom: 50, left: 70 };
 const circleRadius = 7;
+const fadeOpacity = 0.3;
 
 const innerHeight = height - margin.top - margin.bottom;
 const innerWidth = width - margin.right - margin.left;
@@ -82,6 +83,8 @@ export const InteractiveChart = () => {
     return <pre></pre>;
   }
 
+  const filteredData = data.filter((d) => hoveredValue === colorValue(d));
+
   // Linear scale for x values
   const xScale = scaleLinear()
     .domain(extent(data, xValue)) // extent-function replaces min, max
@@ -133,10 +136,25 @@ export const InteractiveChart = () => {
                 colorScale={colorScale}
                 tickSize={circleRadius}
                 onHover={setHoveredValue}
+                hoveredValue={hoveredValue}
+                fadeOpacity={fadeOpacity}
+              />
+            </g>
+            <g opacity={hoveredValue ? fadeOpacity : 1}>
+              <Marks
+                data={data}
+                xScale={xScale}
+                xValue={xValue}
+                yScale={yScale}
+                yValue={yValue}
+                colorScale={colorScale}
+                colorValue={colorValue}
+                tooltipFormat={xAxisTickFormat}
+                circleRadius={circleRadius}
               />
             </g>
             <Marks
-              data={data}
+              data={filteredData}
               xScale={xScale}
               xValue={xValue}
               yScale={yScale}
