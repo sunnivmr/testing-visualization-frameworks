@@ -5,6 +5,7 @@ import { BarChart } from "./learning/BarChart/BarChart";
 import { ScatterPlot } from "./learning/ScatterPlot/ScatterPlot";
 import { LineChart } from "./learning/LineChart/LineChart";
 import { InteractiveChart } from "./learning/InteractiveChart/InteractiveChart";
+import TempData from "./api/TempData/TempData";
 
 import "./App.css";
 
@@ -24,13 +25,20 @@ class App extends React.Component {
         <div className="chart-grid">
           {/**<Faces />
           <ColorData />**/}
-          <InteractiveChart />
+        </div>
+        <div className="section-title">
+          <h2>Normal charts</h2>
+        </div>
+        <div className="chart-grid">
           <BarChart />
           <ScatterPlot />
           <LineChart />
         </div>
         <div className="section-title">
-          <h2>Normal charts</h2>
+          <h2>Interactive charts</h2>
+        </div>
+        <div className="chart-grid">
+          <InteractiveChart />
         </div>
         <div className="section-title">
           <h2>Multiple axes charts</h2>
@@ -40,6 +48,7 @@ class App extends React.Component {
           <div className="section-title">
             <h2>Data from API</h2>
           </div>
+          <TempData />
         </div>
         <div className="text aligned-left">
           <p>Sunniva Mathea Runde, Kaja Løvsjø Solberg</p>
