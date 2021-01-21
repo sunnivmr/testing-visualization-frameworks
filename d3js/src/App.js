@@ -5,7 +5,11 @@ import { BarChart } from "./learning/BarChart/BarChart";
 import { ScatterPlot } from "./learning/ScatterPlot/ScatterPlot";
 import { LineChart } from "./learning/LineChart/LineChart";
 import { InteractiveChart } from "./learning/InteractiveChart/InteractiveChart";
+import { WorldMap } from "./learning/WorldMap/WorldMap";
+
 import TempData from "./api/TempData/TempData";
+
+import { LineChartWProps } from "./components/LineChartWProps/LineChartWProps";
 
 import "./App.css";
 
@@ -30,6 +34,7 @@ class App extends React.Component {
           <h2>Normal charts</h2>
         </div>
         <div className="chart-grid">
+          <WorldMap />
           <BarChart />
           <ScatterPlot />
           <LineChart />
@@ -48,7 +53,7 @@ class App extends React.Component {
           <div className="section-title">
             <h2>Data from API</h2>
           </div>
-          <TempData />
+          <LineChartWProps />
         </div>
         <div className="text aligned-left">
           <p>Sunniva Mathea Runde, Kaja Løvsjø Solberg</p>
