@@ -1,5 +1,14 @@
 import React from "react";
-import { scaleTime, scaleLinear, extent, timeFormat } from "d3";
+import {
+  scaleTime,
+  scaleLinear,
+  extent,
+  timeFormat,
+  bin,
+  timeMonths,
+  sum,
+  max,
+} from "d3";
 import { useData } from "./useData";
 
 import { AxisBottom } from "./AxisBottom";
@@ -11,23 +20,12 @@ import "./chart.scss";
 const width = 700;
 const height = 400;
 const margin = { top: 10, right: 50, bottom: 50, left: 70 };
-const circleRadius = 2;
 
 const innerHeight = height - margin.top - margin.bottom;
 const innerWidth = width - margin.right - margin.left;
 
 //d["Total Dead and Missing"] = +d["Total Dead and Missing"];
 //d["Reported Date"] = new Date(d["Reported Date"]);
-
-// X values
-const xValue = (d) => d["Reported Date"];
-const xAxisLabel = "Time";
-const xAxisLabelOffset = 40;
-
-// Y values
-const yValue = (d) => d["Total Dead and Missing"];
-const yAxisLabel = "Total Dead and Missing";
-const yAxisLabelOffset = 45;
 
 // Axis formats
 const xAxisTickFormat = timeFormat("%m/%d/%Y");
@@ -39,15 +37,38 @@ export const MissingMigrants = () => {
     return <pre></pre>;
   }
 
+  // X values
+  const xValue = (d) => d["Reported Date"];
+  const xAxisLabel = "Time";
+  const xAxisLabelOffset = 40;
+
+  // Y values
+  const yValue = (d) => d["Total Dead and Missing"];
+  const yAxisLabel = "Total Dead and Missing";
+  const yAxisLabelOffset = 45;
+
   // Linear scale for x values
   const xScale = scaleTime()
     .domain(extent(data, xValue)) // extent-function replaces min, max
     .range([0, innerWidth])
     .nice(); // Adjusts the axis to prevent overlap
 
+  const [start, stop] = xScale.domain(); // xScale.domain returns the start and end dates
+
+  // Binned data
+  const binnedData = bin()
+    .value(xValue)
+    .domain(xScale.domain())
+    .thresholds(timeMonths(start, stop))(data)
+    .map((array) => ({
+      y: sum(array, yValue),
+      x0: array.x0,
+      x1: array.x1,
+    }));
+
   // Linear scale for y values
   const yScale = scaleLinear()
-    .domain(extent(data, yValue))
+    .domain([0, max(binnedData, (d) => d.y)]) // Set the scale so that it goes from 0 to the maximum dead and missing
     .range([innerHeight, 0])
     .nice();
 
@@ -65,13 +86,10 @@ export const MissingMigrants = () => {
             />
             <AxisLeft yScale={yScale} innerWidth={innerWidth} tickOffset={7} />
             <Marks
-              data={data}
+              data={binnedData}
               xScale={xScale}
               yScale={yScale}
-              xValue={xValue}
-              yValue={yValue}
-              tooltipFormat={xAxisTickFormat}
-              circleRadius={circleRadius}
+              innerHeight={innerHeight}
             />
             <text
               x={innerWidth / 2}

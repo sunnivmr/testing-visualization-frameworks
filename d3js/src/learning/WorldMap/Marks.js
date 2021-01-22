@@ -19,9 +19,9 @@ export const Marks = ({
       <path className="land" key={i} d={path(feature)} />
     ))}
     <path className="interiors" d={path(interiors)} />
-    {cities.map((d) => {
+    {cities.map((d, i) => {
       const [x, y] = projection([d.lng, d.lat]);
-      return <circle cx={x} cy={y} r={sizeScale(sizeValue(d))} />;
+      return <circle cx={x} cy={y} key={i} r={sizeScale(sizeValue(d))} />;
     })}
   </g>
 );
