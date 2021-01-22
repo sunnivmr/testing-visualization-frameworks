@@ -33,7 +33,7 @@ export const ScatterPlot = () => {
   const data = useData();
 
   if (!data) {
-    return <pre>Loading ...</pre>;
+    return <pre></pre>;
   }
 
   // Linear scale for x values

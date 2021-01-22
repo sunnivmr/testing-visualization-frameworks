@@ -1,40 +1,51 @@
 import React from "react";
-import { scaleTime, scaleLinear, extent, timeFormat } from "d3";
+import {
+  scaleTime,
+  scaleLinear,
+  extent,
+  timeFormat,
+  bin,
+  timeMonths,
+  sum,
+  max,
+} from "d3";
 import { useData } from "./useData";
 
 import { AxisBottom } from "./AxisBottom";
 import { AxisLeft } from "./AxisLeft";
 import { Marks } from "./Marks";
 
-import "./chart.css";
+import "./chart.scss";
 
 const width = 700;
 const height = 400;
 const margin = { top: 10, right: 50, bottom: 50, left: 70 };
-const circleRadius = 2;
 
 const innerHeight = height - margin.top - margin.bottom;
 const innerWidth = width - margin.right - margin.left;
 
-// X values
-const xValue = (d) => d.timestamp;
-const xAxisLabel = "Time";
-const xAxisLabelOffset = 40;
-
-// Y values
-const yValue = (d) => d.temperature;
-const yAxisLabel = "Temperature";
-const yAxisLabelOffset = 45;
+//d["Total Dead and Missing"] = +d["Total Dead and Missing"];
+//d["Reported Date"] = new Date(d["Reported Date"]);
 
 // Axis formats
-const xAxisTickFormat = timeFormat("%a");
+const xAxisTickFormat = timeFormat("%m/%d/%Y");
 
-export const LineChart = () => {
+export const MissingMigrants = () => {
   const data = useData();
 
   if (!data) {
     return <pre></pre>;
   }
+
+  // X values
+  const xValue = (d) => d["Reported Date"];
+  const xAxisLabel = "Time";
+  const xAxisLabelOffset = 40;
+
+  // Y values
+  const yValue = (d) => d["Total Dead and Missing"];
+  const yAxisLabel = "Total Dead and Missing";
+  const yAxisLabelOffset = 45;
 
   // Linear scale for x values
   const xScale = scaleTime()
@@ -42,16 +53,29 @@ export const LineChart = () => {
     .range([0, innerWidth])
     .nice(); // Adjusts the axis to prevent overlap
 
+  const [start, stop] = xScale.domain(); // xScale.domain returns the start and end dates
+
+  // Binned data
+  const binnedData = bin()
+    .value(xValue)
+    .domain(xScale.domain())
+    .thresholds(timeMonths(start, stop))(data)
+    .map((array) => ({
+      y: sum(array, yValue),
+      x0: array.x0,
+      x1: array.x1,
+    }));
+
   // Linear scale for y values
   const yScale = scaleLinear()
-    .domain(extent(data, yValue))
+    .domain([0, max(binnedData, (d) => d.y)]) // Set the scale so that it goes from 0 to the maximum dead and missing
     .range([innerHeight, 0])
     .nice();
 
   return (
     <div className="big-chart-section">
-      <h4 className="section-title">Line Chart (Temperature)</h4>
-      <div className="data">
+      <h4 className="section-title">Dead and Missing Migrants</h4>
+      <div className="migrants">
         <svg width={width} height={height}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
             <AxisBottom
@@ -62,13 +86,10 @@ export const LineChart = () => {
             />
             <AxisLeft yScale={yScale} innerWidth={innerWidth} tickOffset={7} />
             <Marks
-              data={data}
+              data={binnedData}
               xScale={xScale}
               yScale={yScale}
-              xValue={xValue}
-              yValue={yValue}
-              tooltipFormat={xAxisTickFormat}
-              circleRadius={circleRadius}
+              innerHeight={innerHeight}
             />
             <text
               x={innerWidth / 2}

@@ -4,7 +4,14 @@ import React from "react";
 import { BarChart } from "./learning/BarChart/BarChart";
 import { ScatterPlot } from "./learning/ScatterPlot/ScatterPlot";
 import { LineChart } from "./learning/LineChart/LineChart";
+
 import { InteractiveChart } from "./learning/InteractiveChart/InteractiveChart";
+import { WorldMap } from "./learning/WorldMap/WorldMap";
+import { MissingMigrants } from "./learning/MissingMigrants/MissingMigrants";
+
+// import TempData from "./api/TempData/TempData";
+
+//import { LineChartWProps } from "./components/LineChartWProps/LineChartWProps";
 
 import "./App.css";
 
@@ -24,14 +31,24 @@ class App extends React.Component {
         <div className="chart-grid">
           {/**<Faces />
           <ColorData />**/}
+        </div>
+        <div className="section-title">
+          <h2>Advanced charts</h2>
+        </div>
+        <div className="chart-grid">
+          <MissingMigrants />
+          <WorldMap />
           <InteractiveChart />
+        </div>
+        <div className="section-title">
+          <h2>Basic charts</h2>
+        </div>
+        <div className="chart-grid">
           <BarChart />
           <ScatterPlot />
           <LineChart />
         </div>
-        <div className="section-title">
-          <h2>Normal charts</h2>
-        </div>
+
         <div className="section-title">
           <h2>Multiple axes charts</h2>
         </div>
@@ -40,6 +57,7 @@ class App extends React.Component {
           <div className="section-title">
             <h2>Data from API</h2>
           </div>
+          {/**<LineChartWProps />**/}
         </div>
         <div className="text aligned-left">
           <p>Sunniva Mathea Runde, Kaja Løvsjø Solberg</p>

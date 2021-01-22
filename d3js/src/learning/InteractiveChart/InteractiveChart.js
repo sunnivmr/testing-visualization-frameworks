@@ -53,8 +53,6 @@ export const InteractiveChart = () => {
   const data = useData();
   const [hoveredValue, setHoveredValue] = useState(null); // Hovered value in color legend
 
-  console.log(hoveredValue);
-
   // Set initial attributes
   const [xAttribute, setXAttribute] = useState("petal_length");
   const [yAttribute, setYAttribute] = useState("sepal_width");

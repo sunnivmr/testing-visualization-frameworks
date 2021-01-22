@@ -27,7 +27,7 @@ export const BarChart = () => {
   const data = useData();
 
   if (!data) {
-    return <pre>Loading ...</pre>;
+    return <pre></pre>;
   }
 
   // Bandscale for country categories

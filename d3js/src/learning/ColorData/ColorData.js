@@ -23,7 +23,7 @@ export const ColorData = () => {
   }, []);
 
   if (!data) {
-    return <pre>Loading ...</pre>;
+    return <pre></pre>;
   }
 
   const colorPie = pie().value(1);
