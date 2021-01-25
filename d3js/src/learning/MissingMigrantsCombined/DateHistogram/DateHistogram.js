@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { Marks } from "./Marks";
 import { AxisBottom } from "./AxisBottom";
 import { AxisLeft } from "./AxisLeft";
@@ -12,6 +12,8 @@ import {
   timeFormat,
   sum,
   max,
+  brushX,
+  select,
 } from "d3";
 
 const margin = { top: 0, right: 50, bottom: 15, left: 50 };
@@ -20,6 +22,8 @@ const xAxisLabelOffset = 45;
 const yAxisLabelOffset = 40;
 
 export const DateHistogram = ({ data, width, height }) => {
+  const brushRef = useRef();
+
   // X values
   const xValue = (d) => d.date;
   const xAxisLabel = "Time";
@@ -40,6 +44,15 @@ export const DateHistogram = ({ data, width, height }) => {
     .nice(); // Adjusts the axis to prevent overlap
 
   const [start, stop] = xScale.domain(); // xScale.domain returns the start and end dates
+
+  // Side effects of using the brushRef
+  useEffect(() => {
+    const brush = brushX().extent([
+      [0, 0],
+      [innerWidth, innerHeight],
+    ]);
+    brush(select(brushRef.current));
+  }, [innerWidth, innerHeight]); // Dependencies
 
   // Binned data
   const binnedData = bin()
@@ -91,6 +104,7 @@ export const DateHistogram = ({ data, width, height }) => {
         >
           {yAxisLabel}
         </text>
+        <g ref={brushRef} />
       </g>
     </>
   );
