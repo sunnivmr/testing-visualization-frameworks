@@ -1,7 +1,11 @@
 /* Marks styling */
+
+$pink: rgb(248, 156, 228);
+$blue: rgb(100, 150, 255);
+
 .migrants {
   .mark-circle {
-    fill: rgb(248, 156, 228);
+    fill: $blue;
   }
 
   .axis-label {

@@ -7,7 +7,9 @@ import { LineChart } from "./learning/LineChart/LineChart";
 
 import { InteractiveChart } from "./learning/InteractiveChart/InteractiveChart";
 import { WorldMap } from "./learning/WorldMap/WorldMap";
-import { MissingMigrants } from "./learning/MissingMigrants/MissingMigrants";
+// import { MissingMigrants } from "./learning/MissingMigrants/MissingMigrants";
+// import { MissingMigrantsMap } from "./learning/MissingMigrantsMap/MissingMigrantsMap";
+import { MissingMigrantsCombined } from "./learning/MissingMigrantsCombined/MissingMigrantsCombined";
 
 // import TempData from "./api/TempData/TempData";
 
@@ -36,7 +38,7 @@ class App extends React.Component {
           <h2>Advanced charts</h2>
         </div>
         <div className="chart-grid">
-          <MissingMigrants />
+          <MissingMigrantsCombined />
           <WorldMap />
           <InteractiveChart />
         </div>

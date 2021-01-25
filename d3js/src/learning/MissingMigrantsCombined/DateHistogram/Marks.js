@@ -1,9 +1,15 @@
-export const Marks = ({ data, xScale, yScale, tooltipFormat, innerHeight }) => (
+export const Marks = ({
+  binnedData,
+  xScale,
+  yScale,
+  tooltipFormat,
+  innerHeight,
+}) => (
   <>
-    {data.map((d, i) => (
+    {binnedData.map((d, i) => (
       <rect
         key={i}
-        className="mark-circle"
+        className="histogram"
         x={xScale(d.x0)}
         y={yScale(d.y)}
         width={xScale(d.x1) - xScale(d.x0)}

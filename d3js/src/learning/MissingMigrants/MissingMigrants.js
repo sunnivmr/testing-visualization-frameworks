@@ -90,6 +90,7 @@ export const MissingMigrants = () => {
               xScale={xScale}
               yScale={yScale}
               innerHeight={innerHeight}
+              tooltipFormat={tooltipFormat}
             />
             <text
               x={innerWidth / 2}
