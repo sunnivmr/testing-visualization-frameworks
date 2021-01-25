@@ -21,11 +21,14 @@ const margin = { top: 0, right: 50, bottom: 15, left: 50 };
 const xAxisLabelOffset = 45;
 const yAxisLabelOffset = 40;
 
-export const DateHistogram = ({ data, width, height }) => {
-  const brushRef = useRef();
-
+export const DateHistogram = ({
+  data,
+  width,
+  height,
+  setBrushExtent,
+  xValue,
+}) => {
   // X values
-  const xValue = (d) => d.date;
   const xAxisLabel = "Time";
 
   const xAxisTickFormat = timeFormat("%m/%d/%Y");
@@ -44,6 +47,7 @@ export const DateHistogram = ({ data, width, height }) => {
     .nice(); // Adjusts the axis to prevent overlap
 
   const [start, stop] = xScale.domain(); // xScale.domain returns the start and end dates
+  const brushRef = useRef();
 
   // Side effects of using the brushRef
   useEffect(() => {
@@ -52,7 +56,10 @@ export const DateHistogram = ({ data, width, height }) => {
       [innerWidth, innerHeight],
     ]);
     brush(select(brushRef.current));
-  }, [innerWidth, innerHeight]); // Dependencies
+    brush.on("brush end", (event, d) => {
+      setBrushExtent(event.selection && event.selection.map(xScale.invert));
+    });
+  }, [innerWidth, innerHeight, setBrushExtent, xScale.invert]); // Dependencies
 
   // Binned data
   const binnedData = bin()
