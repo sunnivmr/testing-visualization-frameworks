@@ -24,6 +24,8 @@ const margin = { top: 10, right: 50, bottom: 50, left: 70 };
 const innerHeight = height - margin.top - margin.bottom;
 const innerWidth = width - margin.right - margin.left;
 
+const tooltipFormat = (d) => d + " migrants";
+
 //d["Total Dead and Missing"] = +d["Total Dead and Missing"];
 //d["Reported Date"] = new Date(d["Reported Date"]);
 
@@ -90,6 +92,7 @@ export const MissingMigrants = () => {
               xScale={xScale}
               yScale={yScale}
               innerHeight={innerHeight}
+              tooltipFormat={tooltipFormat}
             />
             <text
               x={innerWidth / 2}

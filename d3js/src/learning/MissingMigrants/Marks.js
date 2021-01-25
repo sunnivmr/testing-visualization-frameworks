@@ -9,7 +9,7 @@ export const Marks = ({ data, xScale, yScale, tooltipFormat, innerHeight }) => (
         width={xScale(d.x1) - xScale(d.x0)}
         height={innerHeight - yScale(d.y)}
       >
-        <title>{d.y + " migrants"}</title>
+        <title>{tooltipFormat(d.y)}</title>
       </rect>
     ))}
   </>
