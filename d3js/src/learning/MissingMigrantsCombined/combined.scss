@@ -1,0 +1,71 @@
+/* Marks styling */
+$blueBackground: rgb(231, 241, 241);
+$blueLand: rgb(125, 189, 197);
+$blueLines: rgb(160, 217, 224);
+$blueGraticules: rgb(210, 228, 228);
+
+$greyBackground: rgb(247, 247, 247);
+$greyLand: rgb(230, 230, 230);
+$greyLines: rgb(215, 215, 215);
+$greyGraticules: rgb(240, 240, 240);
+$greyText: #635f5d;
+
+$colorMarks: rgb(236, 71, 107);
+
+$xxx-small: 8px;
+
+.map .land {
+  fill: $greyLand;
+}
+
+.map .interiors {
+  fill: none;
+  stroke: $greyLines;
+}
+
+.map .sphere {
+  fill: $greyBackground;
+}
+
+.map .graticules {
+  fill: none;
+  stroke: $greyGraticules;
+}
+
+.map circle {
+  fill: $colorMarks;
+  opacity: 0.5;
+}
+
+.histogram {
+  fill: $colorMarks;
+}
+
+.background {
+  fill: white;
+}
+
+/* Axes styling */
+
+.axis-label {
+  text-anchor: middle;
+  font-size: $xxx-small;
+  font-weight: normal;
+  fill: $greyText;
+}
+
+.tick-line {
+  stroke: $greyGraticules;
+}
+
+.tick-text-x {
+  text-anchor: middle;
+  font-size: $xxx-small;
+  fill: $greyText;
+}
+
+.tick-text-y {
+  text-anchor: end;
+  font-size: $xxx-small;
+  fill: $greyText;
+}
