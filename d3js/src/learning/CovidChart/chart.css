@@ -1,0 +1,5 @@
+.covid-chart span p {
+  font-size: smaller;
+  display: inline-block;
+  margin-right: 1em;
+}

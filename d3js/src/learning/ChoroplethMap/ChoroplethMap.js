@@ -59,7 +59,7 @@ export const ChoroplethMap = () => {
   const maxNumber = max(data, colorValue);
   const minNumber = min(data, colorValue);
 
-  const colorLegendText = "Prevalence of people affected (%)";
+  const colorLegendText = "Prevalence of people infected (%)";
 
   return (
     <div className="big-chart-section">
