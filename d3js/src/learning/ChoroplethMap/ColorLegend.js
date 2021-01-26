@@ -16,7 +16,7 @@ const range = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
 export const ColorLegend = ({
   colorScale,
   colorLegendText,
-  margins,
+  margin,
   maxNumber,
   minNumber,
 }) => {
@@ -25,7 +25,7 @@ export const ColorLegend = ({
   return (
     <g
       className="color-legend"
-      transform={`translate(${margins.left}, ${margins.top})`}
+      transform={`translate(${margin.left}, ${margin.top})`}
     >
       {range.map((number, i) => (
         <rect
