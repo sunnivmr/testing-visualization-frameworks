@@ -1,0 +1,31 @@
+$markerColor: rgb(226, 58, 58);
+
+.covid-19 .info p {
+  font-size: smaller;
+  display: inline-block;
+  margin-right: 1em;
+}
+
+.covid-19 .line-chart path {
+  fill: none;
+  stroke: black;
+  stroke-width: 2px;
+}
+
+.marker-line {
+  stroke: $markerColor;
+  stroke-width: 1px;
+  opacity: 0.5;
+}
+
+.marker-text-x {
+  font-size: x-small;
+  fill: $markerColor;
+  text-anchor: middle;
+}
+
+.marker-text-y {
+  font-size: x-small;
+  fill: $markerColor;
+  text-anchor: end;
+}

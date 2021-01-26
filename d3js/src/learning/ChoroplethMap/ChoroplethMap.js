@@ -13,7 +13,7 @@ const width = 960;
 const height = 500;
 
 // Color legend margins
-const colorLegendMargins = {
+const colorLegendMargin = {
   top: height - 125,
   right: 0,
   bottom: 0,
@@ -59,7 +59,7 @@ export const ChoroplethMap = () => {
   const maxNumber = max(data, colorValue);
   const minNumber = min(data, colorValue);
 
-  const colorLegendText = "Prevalence of people affected (%)";
+  const colorLegendText = "Prevalence of people infected (%)";
 
   return (
     <div className="big-chart-section">
@@ -77,7 +77,7 @@ export const ChoroplethMap = () => {
         <ColorLegend
           colorScale={interpolateYlOrRd}
           colorLegendText={colorLegendText}
-          margins={colorLegendMargins}
+          margin={colorLegendMargin}
           maxNumber={maxNumber}
           minNumber={minNumber}
         />
