@@ -1,23 +1,19 @@
 import React from "react";
-import { useDeaths } from "./useDeaths";
-import { useCases } from "./useCases";
+import { useData } from "./useData";
 
 import "./chart.css";
 
-const width = 700;
+const width = window.innerWidth * 0.75;
 const height = 400;
 
 const sum = (accumulator, currentValue) => accumulator + currentValue;
 
-export const CovidChart = () => {
-  const deaths = useDeaths();
-  const cases = useCases();
+export const CovidLineChart = () => {
+  const [cases, deaths] = useData();
 
   if (!deaths || !cases) {
     return <pre></pre>;
   }
-
-  console.log(cases);
 
   const latestDateColumn = deaths.columns[deaths.columns.length - 1];
   const deathTotal = deaths.map((d) => +d[latestDateColumn]).reduce(sum, 0);
@@ -25,10 +21,10 @@ export const CovidChart = () => {
 
   return (
     <div className="big-chart-section covid-chart">
-      <h4 className="section-title">Coronavirus Total Deaths</h4>
+      <h4 className="section-title">Coronavirus Line Chart</h4>
       <span className="info">
         <p>
-          <strong>Updated:</strong> {latestDateColumn}
+          <strong>Latest date:</strong> {latestDateColumn}
         </p>
         <p>
           <strong>Total deaths:</strong>{" "}
@@ -41,7 +37,9 @@ export const CovidChart = () => {
       </span>
 
       <div className="data">
-        <svg width={width} height={height}></svg>
+        <svg width={width} height={height}>
+          <rect width={width} height={height} fill={"babyblue"} />
+        </svg>
       </div>
     </div>
   );
