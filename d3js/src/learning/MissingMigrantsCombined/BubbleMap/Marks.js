@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { geoNaturalEarth1, geoPath, geoGraticule } from "d3";
 
 const projection = geoNaturalEarth1();
@@ -11,12 +12,19 @@ export const Marks = ({
   sizeValue,
 }) => (
   <g className="map">
-    <path className="sphere" d={path({ type: "Sphere" })} />
-    <path className="graticules" d={path(graticule())} />
-    {land.features.map((feature, i) => (
-      <path className="land" key={i} d={path(feature)} />
-    ))}
-    <path className="interiors" d={path(interiors)} />
+    {useMemo(
+      () => (
+        <>
+          <path className="sphere" d={path({ type: "Sphere" })} />
+          <path className="graticules" d={path(graticule())} />
+          {land.features.map((feature, i) => (
+            <path className="land" key={i} d={path(feature)} />
+          ))}
+          <path className="interiors" d={path(interiors)} />
+        </>
+      ),
+      [path, graticule, land, interiors]
+    )}
     {data.map((d, i) => {
       const [x, y] = projection(d.coords);
       return (

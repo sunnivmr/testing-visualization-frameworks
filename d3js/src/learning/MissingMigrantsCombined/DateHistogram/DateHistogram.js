@@ -52,7 +52,6 @@ export const DateHistogram = ({
   // Binned data
   const binnedData = useMemo(() => {
     const [start, stop] = xScale.domain(); // xScale.domain returns the start and end dates
-    console.log("computing binnedData");
     return bin()
       .value(xValue)
       .domain(xScale.domain())
