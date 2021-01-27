@@ -1,10 +1,9 @@
-$markerColor: rgb(226, 58, 58);
+$colorRed: rgb(226, 58, 58);
+$colorBlue: rgb(58, 69, 226);
+$colorWhite: white;
 
-$buttonCheckedColor: $markerColor;
-$buttonCheckedTextColor: white;
-
-$buttonColor: white;
-$buttonTextColor: $markerColor;
+$tickLineColor: #eeeeee;
+$tickTextColor: #777777;
 
 .covid-19 > * {
   display: block;
@@ -24,20 +23,20 @@ $buttonTextColor: $markerColor;
 }
 
 .marker-line {
-  stroke: $markerColor;
+  stroke: $colorRed;
   stroke-width: 1px;
   opacity: 0.5;
 }
 
 .marker-text-x {
   font-size: x-small;
-  fill: $markerColor;
+  fill: $colorRed;
   text-anchor: middle;
 }
 
 .marker-text-y {
   font-size: x-small;
-  fill: $markerColor;
+  fill: $colorRed;
   text-anchor: end;
 }
 
@@ -51,17 +50,15 @@ $buttonTextColor: $markerColor;
   }
 }
 
-// Radio buttons
-.data-choices {
-  text-align: left;
-  display: block;
+// Radio datas
+.data-choices,
+.scale-choices {
+  display: inline-block;
+  margin-right: 1em;
 }
 
-.radio-buttons {
-  margin-left: 0;
-}
-
-.data-choice {
+.data-choice,
+.scale-choice {
   cursor: pointer;
   display: inline;
   font-size: smaller;
@@ -71,25 +68,52 @@ $buttonTextColor: $markerColor;
   }
 
   input:checked + label {
-    color: $buttonCheckedTextColor;
-    background-color: $buttonCheckedColor;
+    color: $colorWhite;
+    background-color: $colorRed;
     cursor: default;
   }
 
   label {
     display: inline-block;
-    background-color: $buttonColor;
-    border: solid 1px $buttonTextColor;
+    background-color: $colorWhite;
+    border: solid 1px $colorRed;
     border-radius: 0.5em;
 
     margin-right: 0.5em;
     padding: 0.5em;
     cursor: pointer;
-    color: $buttonTextColor;
+    color: $colorRed;
+  }
+
+  label:hover {
+    background-color: $colorRed;
+    color: $colorWhite;
   }
 }
 
-.data-choice label:hover {
-  background-color: $buttonCheckedColor;
-  color: $buttonCheckedTextColor;
+.scale-choice {
+  input:checked + label {
+    background-color: $colorBlue;
+  }
+
+  label {
+    color: $colorBlue;
+    border: solid 1px $colorBlue;
+  }
+
+  label:hover {
+    background-color: $colorBlue;
+  }
+}
+
+.domain {
+  display: none;
+}
+
+.tick line {
+  stroke: $tickLineColor;
+}
+
+.tick text {
+  color: $tickTextColor;
 }
