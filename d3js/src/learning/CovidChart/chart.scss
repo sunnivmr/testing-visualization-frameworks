@@ -18,7 +18,7 @@ $tickTextColor: #777777;
 
 .covid-19 .line-chart path {
   fill: none;
-  stroke: black;
+  stroke: $colorRed;
   stroke-width: 2px;
 }
 

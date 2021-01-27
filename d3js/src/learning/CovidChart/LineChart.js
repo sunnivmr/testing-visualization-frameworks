@@ -43,8 +43,8 @@ export const LineChart = ({ data, width, height, scale }) => {
   return (
     <svg width={width} height={height} className="line-chart">
       <g transform={`translate(${margin.left}, ${margin.top})`}>
-        <XAxis xScale={xScale} innerHeight={innerHeight} />
-        <YAxis yScale={yScale} innerWidth={innerWidth} />
+        <XAxis xScale={xScale} innerHeight={innerHeight} scale={scale} />
+        <YAxis yScale={yScale} innerWidth={innerWidth} scale={scale} />
         <path d={lineGenerator(data)} />
       </g>
     </svg>
