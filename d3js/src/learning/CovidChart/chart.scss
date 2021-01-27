@@ -1,5 +1,16 @@
 $markerColor: rgb(226, 58, 58);
 
+$buttonCheckedColor: $markerColor;
+$buttonCheckedTextColor: white;
+
+$buttonColor: white;
+$buttonTextColor: $markerColor;
+
+.covid-19 > * {
+  display: block;
+  margin: auto;
+}
+
 .covid-19 .info p {
   font-size: smaller;
   display: inline-block;
@@ -28,4 +39,57 @@ $markerColor: rgb(226, 58, 58);
   font-size: x-small;
   fill: $markerColor;
   text-anchor: end;
+}
+
+// Info
+.info {
+  width: 500px;
+  text-align: left;
+
+  h4 {
+    text-align: center;
+  }
+}
+
+// Radio buttons
+.data-choices {
+  text-align: left;
+  display: block;
+}
+
+.radio-buttons {
+  margin-left: 0;
+}
+
+.data-choice {
+  cursor: pointer;
+  display: inline;
+  font-size: smaller;
+
+  input {
+    display: none;
+  }
+
+  input:checked + label {
+    color: $buttonCheckedTextColor;
+    background-color: $buttonCheckedColor;
+    cursor: default;
+  }
+
+  label {
+    display: inline-block;
+    background-color: $buttonColor;
+    border: solid 1px $buttonTextColor;
+    border-radius: 0.5em;
+
+    margin-right: 0.5em;
+    padding: 0.5em;
+    cursor: pointer;
+    color: $buttonTextColor;
+  }
+}
+
+.data-choice label:hover {
+  background-color: $buttonCheckedColor;
+  color: $buttonCheckedTextColor;
 }

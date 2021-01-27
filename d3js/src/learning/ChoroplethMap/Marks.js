@@ -1,10 +1,9 @@
-import { geoNaturalEarth1, geoPath, geoGraticule } from "d3";
+import { geoNaturalEarth1, geoPath } from "d3";
 
 import "./worldmap.scss";
 
 const projection = geoNaturalEarth1();
 const path = geoPath(projection);
-const graticule = geoGraticule();
 
 const missingDataColor = "white";
 const strokeColor = "peru";

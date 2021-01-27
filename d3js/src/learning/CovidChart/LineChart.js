@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { scaleTime, scaleLinear, max, line, extent } from "d3";
-import { MarkerLineY } from "./MarkerLineY";
-import { MarkerLineX } from "./MarkerLineX";
+import { MarkerLineY } from "./markerlines/MarkerLineY";
+import { MarkerLineX } from "./markerlines/MarkerLineX";
+import { XAxis } from "./axes/XAxis";
+import { YAxis } from "./axes/YAxis";
 
 const xValue = (d) => d.date;
 const yValue = (d) => d.total;
@@ -14,6 +16,8 @@ const formatNumber = (d) => d.toLocaleString("en-US");
 const margin = { top: 20, right: 20, bottom: 20, left: 75 };
 
 export const LineChart = ({ data, width, height }) => {
+  const [yAttribute, setYAttribute] = useState("cases");
+
   const innerWidth = width - margin.right - margin.left;
   const innerHeight = height - margin.top - margin.bottom;
 
@@ -26,7 +30,6 @@ export const LineChart = ({ data, width, height }) => {
     .range([innerHeight, 0]);
 
   const latestDate = xScale.domain()[1];
-  console.log(latestDate);
 
   const lineGenerator = line()
     .x((d) => xScale(xValue(d)))
@@ -52,6 +55,8 @@ export const LineChart = ({ data, width, height }) => {
           xScale={xScale}
           innerHeight={innerHeight}
         />
+        <XAxis xScale={xScale} />
+        <YAxis yScale={yScale} />
         <path d={lineGenerator(data)} />
       </g>
     </svg>
