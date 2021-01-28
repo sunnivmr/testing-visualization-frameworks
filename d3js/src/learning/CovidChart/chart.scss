@@ -2,6 +2,8 @@ $colorRed: rgb(226, 58, 58);
 $colorBlue: rgb(58, 69, 226);
 $colorWhite: white;
 
+$colorLine: $colorRed;
+
 $tickLineColor: #eeeeee;
 $tickTextColor: #777777;
 
@@ -18,8 +20,8 @@ $tickTextColor: #777777;
 
 .covid-19 .line-chart path {
   fill: none;
-  stroke: $colorRed;
-  stroke-width: 2px;
+  stroke: $colorLine;
+  stroke-width: 0.2em;
 }
 
 .marker-line {

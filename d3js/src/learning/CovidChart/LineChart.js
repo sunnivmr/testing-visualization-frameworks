@@ -8,6 +8,9 @@ import { YAxis } from "./axes/YAxis";
 const xValue = (d) => d.date;
 const yValue = (d) => d.total;
 
+const tickPaddingX = 7;
+const tickPaddingY = 10;
+
 //const milestone1 = 1000000;
 //const milestone2 = 2000000;
 
@@ -43,8 +46,18 @@ export const LineChart = ({ data, width, height, scale }) => {
   return (
     <svg width={width} height={height} className="line-chart">
       <g transform={`translate(${margin.left}, ${margin.top})`}>
-        <XAxis xScale={xScale} innerHeight={innerHeight} scale={scale} />
-        <YAxis yScale={yScale} innerWidth={innerWidth} scale={scale} />
+        <XAxis
+          xScale={xScale}
+          innerHeight={innerHeight}
+          scale={scale}
+          tickPadding={tickPaddingY}
+        />
+        <YAxis
+          yScale={yScale}
+          innerWidth={innerWidth}
+          scale={scale}
+          tickPadding={tickPaddingY}
+        />
         <path d={lineGenerator(data)} />
       </g>
     </svg>
