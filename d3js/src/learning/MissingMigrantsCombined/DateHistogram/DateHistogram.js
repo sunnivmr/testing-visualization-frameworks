@@ -61,7 +61,7 @@ export const DateHistogram = ({
         x0: array.x0,
         x1: array.x1,
       }));
-  }, [xValue, yValue, xScale, data]);
+  }, [xValue, xScale, data]);
 
   // Linear scale for y values
   const yScale = useMemo(

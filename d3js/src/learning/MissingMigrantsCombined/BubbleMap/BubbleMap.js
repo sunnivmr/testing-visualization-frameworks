@@ -11,7 +11,7 @@ export const BubbleMap = ({ data, filteredData, worldAtlas }) => {
       scaleSqrt()
         .domain([0, max(data, sizeValue)])
         .range([0, maxRadius]),
-    [data, sizeValue, maxRadius]
+    [data]
   );
 
   return (

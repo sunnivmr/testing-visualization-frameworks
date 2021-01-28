@@ -23,7 +23,7 @@ export const Marks = ({
           <path className="interiors" d={path(interiors)} />
         </>
       ),
-      [path, graticule, land, interiors]
+      [land, interiors]
     )}
     {data.map((d, i) => {
       const [x, y] = projection(d.coords);

@@ -1,4 +1,16 @@
-$markerColor: rgb(226, 58, 58);
+$colorRed: rgb(226, 58, 58);
+$colorBlue: rgb(58, 69, 226);
+$colorWhite: white;
+
+$colorLine: $colorRed;
+
+$tickLineColor: #eeeeee;
+$tickTextColor: #777777;
+
+.covid-19 > * {
+  display: block;
+  margin: auto;
+}
 
 .covid-19 .info p {
   font-size: smaller;
@@ -8,24 +20,102 @@ $markerColor: rgb(226, 58, 58);
 
 .covid-19 .line-chart path {
   fill: none;
-  stroke: black;
-  stroke-width: 2px;
+  stroke: $colorLine;
+  stroke-width: 0.2em;
 }
 
 .marker-line {
-  stroke: $markerColor;
+  stroke: $colorRed;
   stroke-width: 1px;
   opacity: 0.5;
 }
 
 .marker-text-x {
   font-size: x-small;
-  fill: $markerColor;
+  fill: $colorRed;
   text-anchor: middle;
 }
 
 .marker-text-y {
   font-size: x-small;
-  fill: $markerColor;
+  fill: $colorRed;
   text-anchor: end;
+}
+
+// Info
+.info {
+  width: 500px;
+  text-align: left;
+
+  h4 {
+    text-align: center;
+  }
+}
+
+// Radio datas
+.data-choices,
+.scale-choices {
+  display: inline-block;
+  margin-right: 1em;
+}
+
+.data-choice,
+.scale-choice {
+  cursor: pointer;
+  display: inline;
+  font-size: smaller;
+
+  input {
+    display: none;
+  }
+
+  input:checked + label {
+    color: $colorWhite;
+    background-color: $colorRed;
+    cursor: default;
+  }
+
+  label {
+    display: inline-block;
+    background-color: $colorWhite;
+    border: solid 1px $colorRed;
+    border-radius: 0.5em;
+
+    margin-right: 0.5em;
+    padding: 0.5em;
+    cursor: pointer;
+    color: $colorRed;
+  }
+
+  label:hover {
+    background-color: $colorRed;
+    color: $colorWhite;
+  }
+}
+
+.scale-choice {
+  input:checked + label {
+    background-color: $colorBlue;
+  }
+
+  label {
+    color: $colorBlue;
+    border: solid 1px $colorBlue;
+  }
+
+  label:hover {
+    background-color: $colorBlue;
+  }
+}
+
+.domain {
+  display: none;
+}
+
+.tick line {
+  stroke: $tickLineColor;
+}
+
+.tick text {
+  color: $tickTextColor;
 }
