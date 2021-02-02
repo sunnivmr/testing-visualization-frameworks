@@ -15,31 +15,38 @@ const csvUrlCasesUpdated =
 const csvUrlDeathsUpdated =
   "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv";
 
-const sum = (accumulator, currentValue) => accumulator + currentValue;
-
 const parseDate = timeParse("%m/%d/%y");
 
-const transformGlobal = (rawData) => {
+const transformCountries = (rawData, dataType) => {
+  // Filter out rows that represent provinces or states
+  const countriesData = rawData.filter((d) => !d["Province/State"]);
+
+  // Get timeseries data for each country
   const dates = rawData.columns.slice(4);
+  return countriesData.map((d) => {
+    const countryName = d["Country/Region"];
+    const countryTimeseries = dates.map((date) => ({
+      date: parseDate(date),
+      total: +d[date],
+      dataType: dataType,
+      countryName: countryName,
+    }));
 
-  const transformedGlobal = dates.map((date) => ({
-    date: parseDate(date),
-    total: rawData.map((d) => +d[date]).reduce(sum, 0),
-  }));
-
-  return transformedGlobal;
+    countryTimeseries.countryName = countryName;
+    return countryTimeseries;
+  });
 };
 
-export const useData = () => {
+export const useCountriesData = () => {
   const [cases, setCases] = useState(null);
   const [deaths, setDeaths] = useState(null);
 
   useEffect(() => {
     csv(csvUrlCasesUpdated).then((rawCases) => {
-      setCases(transformGlobal(rawCases));
+      setCases(transformCountries(rawCases, "case"));
     });
     csv(csvUrlDeathsUpdated).then((rawDeaths) => {
-      setDeaths(transformGlobal(rawDeaths));
+      setDeaths(transformCountries(rawDeaths, "death"));
     });
   }, []);
 

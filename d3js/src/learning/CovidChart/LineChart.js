@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { scaleTime, max, line, extent, scaleLinear, scaleLog } from "d3";
 // import { MarkerLineY } from "./markerlines/MarkerLineY";
 // import { MarkerLineX } from "./markerlines/MarkerLineX";
@@ -8,19 +8,12 @@ import { YAxis } from "./axes/YAxis";
 const xValue = (d) => d.date;
 const yValue = (d) => d.total;
 
-const tickPaddingX = 7;
+// const tickPaddingX = 7;
 const tickPaddingY = 10;
-
-//const milestone1 = 1000000;
-//const milestone2 = 2000000;
-
-// const formatNumber = (d) => d.toLocaleString("en-US");
 
 const margin = { top: 20, right: 20, bottom: 20, left: 75 };
 
 export const LineChart = ({ data, width, height, scale }) => {
-  // const [yAttribute, setYAttribute] = useState("deaths");
-
   const innerWidth = width - margin.right - margin.left;
   const innerHeight = height - margin.top - margin.bottom;
 
@@ -36,8 +29,6 @@ export const LineChart = ({ data, width, height, scale }) => {
       : scaleLog()
           .domain([1, max(data, (d) => d.total)])
           .range([innerHeight, 0]);
-
-  // const latestDate = xScale.domain()[1];
 
   const lineGenerator = line()
     .x((d) => xScale(xValue(d)))
@@ -58,6 +49,9 @@ export const LineChart = ({ data, width, height, scale }) => {
           scale={scale}
           tickPadding={tickPaddingY}
         />
+        {/*countries.map((country) => (
+          <path d={lineGenerator(country.data)} />
+        ))*/}
         <path d={lineGenerator(data)} />
       </g>
     </svg>

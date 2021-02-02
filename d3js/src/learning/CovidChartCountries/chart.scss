@@ -7,27 +7,91 @@ $colorLine: $colorRed;
 $tickLineColor: #eeeeee;
 $tickTextColor: #777777;
 
-.covid-19 > * {
-  display: block;
-  margin: auto;
-}
-
-.covid-19 .info p {
-  font-size: smaller;
-  display: inline-block;
-  margin-right: 1em;
-}
-
-.covid-19 .line-chart path {
+// Voronoi
+.voronoi path {
+  stroke: none;
   fill: none;
-  stroke: $colorLine;
-  stroke-width: 0.2em;
+  pointer-events: all;
 }
 
-.marker-line {
-  stroke: $colorRed;
-  stroke-width: 1px;
-  opacity: 0.5;
+// Chart
+.covid-19-countries {
+  > * {
+    display: block;
+    margin: auto;
+    overflow: visible;
+  }
+
+  .info p {
+    font-size: smaller;
+    display: inline-block;
+    margin-right: 1em;
+  }
+
+  // Dropdowns
+  .dropdowns {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    font-size: smaller;
+  }
+
+  .Dropdown-root {
+    cursor: pointer;
+    margin-right: 1em;
+  }
+
+  .dropdown-label {
+    margin-left: 30px;
+    margin-right: 10px;
+  }
+
+  .Dropdown-root {
+    display: inline-block;
+  }
+
+  .Dropdown-option.is-selected {
+    background-color: rgba(226, 58, 58, 0.1);
+  }
+
+  .Dropdown-option:hover {
+    background-color: rgba(226, 58, 58, 0.3);
+  }
+
+  .country-line {
+    fill: none;
+    stroke: $colorLine;
+    stroke-width: 0.15em;
+    opacity: 0.2;
+  }
+
+  .marker-line {
+    stroke: $colorRed;
+    stroke-width: 1px;
+    opacity: 0.2;
+  }
+
+  .active-tooltip {
+    circle,
+    text {
+      fill: $colorLine;
+    }
+
+    text {
+      font-size: smaller;
+      text-anchor: middle;
+      display: inline;
+    }
+
+    .text-stroke {
+      stroke: white;
+      stroke-width: 2px;
+    }
+  }
+
+  .active {
+    opacity: 1;
+  }
 }
 
 .marker-text-x {
@@ -43,7 +107,7 @@ $tickTextColor: #777777;
 }
 
 // Info
-.info {
+.covid-19-countries .info {
   width: 600px;
   text-align: left;
 

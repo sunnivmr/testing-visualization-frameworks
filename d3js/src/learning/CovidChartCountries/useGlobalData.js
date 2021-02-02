@@ -30,7 +30,7 @@ const transformGlobal = (rawData) => {
   return transformedGlobal;
 };
 
-export const useData = () => {
+export const useGlobalData = () => {
   const [cases, setCases] = useState(null);
   const [deaths, setDeaths] = useState(null);
 

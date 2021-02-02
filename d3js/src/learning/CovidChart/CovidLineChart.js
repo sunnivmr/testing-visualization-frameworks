@@ -18,7 +18,7 @@ const scales = [
   { value: "log", label: "Logarithmic scale", scale: scaleLog },
 ];
 
-const width = 600;
+const width = 700;
 const height = 400;
 
 const formatNumber = (d) => d.toLocaleString("en-US");
