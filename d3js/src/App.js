@@ -1,16 +1,17 @@
 import React from "react";
 // import { Faces } from "./learning/Face/Faces";
 // import { ColorData } from "./learning/ColorData/ColorData";
-import { BarChart } from "./learning/BarChart/BarChart";
-import { ScatterPlot } from "./learning/ScatterPlot/ScatterPlot";
-import { LineChart } from "./learning/LineChart/LineChart";
+// import { BarChart } from "./learning/BarChart/BarChart";
+// import { ScatterPlot } from "./learning/ScatterPlot/ScatterPlot";
+// import { LineChart } from "./learning/LineChart/LineChart";
 
-import { InteractiveChart } from "./learning/InteractiveChart/InteractiveChart";
-import { WorldMap } from "./learning/WorldMap/WorldMap";
+// import { InteractiveChart } from "./learning/InteractiveChart/InteractiveChart";
+// import { WorldMap } from "./learning/WorldMap/WorldMap";
 // import { MissingMigrants } from "./learning/MissingMigrants/MissingMigrants";
 // import { MissingMigrantsMap } from "./learning/MissingMigrantsMap/MissingMigrantsMap";
-import { MissingMigrantsCombined } from "./learning/MissingMigrantsCombined/MissingMigrantsCombined";
-import { ChoroplethMap } from "./learning/ChoroplethMap/ChoroplethMap";
+// import { MissingMigrantsCombined } from "./learning/MissingMigrantsCombined/MissingMigrantsCombined";
+// import { ChoroplethMap } from "./learning/ChoroplethMap/ChoroplethMap";
+import { CovidLineChart as CovidLineChartCountries } from "./learning/CovidChartCountries/CovidLineChart";
 import { CovidLineChart } from "./learning/CovidChart/CovidLineChart";
 
 // import TempData from "./api/TempData/TempData";
@@ -40,12 +41,14 @@ class App extends React.Component {
           <h2>Advanced charts</h2>
         </div>
         <div className="chart-grid">
+          <CovidLineChartCountries />
           <CovidLineChart />
-          <ChoroplethMap />
+          {/*<ChoroplethMap />
           <MissingMigrantsCombined />
           <WorldMap />
-          <InteractiveChart />
+          <InteractiveChart />*/}
         </div>
+        {/*
         <div className="section-title">
           <h2>Basic charts</h2>
         </div>
@@ -63,11 +66,11 @@ class App extends React.Component {
           <div className="section-title">
             <h2>Data from API</h2>
           </div>
-          {/**<LineChartWProps />**/}
-        </div>
+          <LineChartWProps />
+        </div>/
         <div className="text aligned-left">
           <p>Sunniva Mathea Runde, Kaja Løvsjø Solberg</p>
-        </div>
+        </div>*/}
       </div>
     );
   }

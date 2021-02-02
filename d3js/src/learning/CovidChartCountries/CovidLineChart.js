@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useData } from "./useData";
 import { timeFormat, scaleLinear, scaleLog } from "d3";
-
 import { LineChart } from "./LineChart";
+
+import { useGlobalData } from "./useGlobalData";
+import { useCountriesData } from "./useCountriesData";
 
 import "./chart.scss";
 
@@ -24,12 +25,13 @@ const height = 400;
 const formatNumber = (d) => d.toLocaleString("en-US");
 
 export const CovidLineChart = () => {
-  const [cases, deaths] = useData();
+  const [cases, deaths] = useCountriesData();
+  const [casesGlobal, deathsGlobal] = useGlobalData();
   const [chosenValue, setChosenValue] = useState("deaths");
   const [chosenData, setChosenData] = useState(null);
   const [chosenScale, setChosenScale] = useState("linear");
 
-  if (!deaths || !cases) {
+  if (!deaths || !cases || !deathsGlobal || !casesGlobal) {
     return <pre></pre>;
   }
 
@@ -42,19 +44,21 @@ export const CovidLineChart = () => {
   datasets[0].data = deaths;
   datasets[1].data = cases;
 
-  const latestDate = timeFormat("%m/%d/%y")(deaths[deaths.length - 1].date);
+  const latestDate = timeFormat("%m/%d/%y")(
+    deathsGlobal[deathsGlobal.length - 1].date
+  );
 
-  let totalDeaths = deaths[deaths.length - 1].total;
-  let totalCases = cases[deaths.length - 1].total;
+  let totalDeaths = deathsGlobal[deathsGlobal.length - 1].total;
+  let totalCases = casesGlobal[casesGlobal.length - 1].total;
 
   const info = [
     { value: latestDate, label: "Latest date" },
-    { value: formatNumber(totalDeaths), label: "Total deaths" },
-    { value: formatNumber(totalCases), label: "Total cases" },
+    { value: formatNumber(totalDeaths), label: "Total global deaths" },
+    { value: formatNumber(totalCases), label: "Total global cases" },
   ];
 
   return (
-    <div className="big-chart-section covid-19">
+    <div className="big-chart-section covid-19-countries">
       <div className="info">
         <h4 className="section-title">Coronavirus Line Chart</h4>
         {info.map((info, i) => (

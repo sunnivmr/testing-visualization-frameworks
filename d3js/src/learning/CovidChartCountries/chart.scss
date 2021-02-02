@@ -7,27 +7,60 @@ $colorLine: $colorRed;
 $tickLineColor: #eeeeee;
 $tickTextColor: #777777;
 
-.covid-19 > * {
-  display: block;
-  margin: auto;
-}
-
-.covid-19 .info p {
-  font-size: smaller;
-  display: inline-block;
-  margin-right: 1em;
-}
-
-.covid-19 .line-chart path {
+// Voronoi
+.voronoi path {
+  stroke: none;
   fill: none;
-  stroke: $colorLine;
-  stroke-width: 0.2em;
+  pointer-events: all;
 }
 
-.marker-line {
-  stroke: $colorRed;
-  stroke-width: 1px;
-  opacity: 0.5;
+// Chart
+.covid-19-countries {
+  > * {
+    display: block;
+    margin: auto;
+  }
+
+  .info p {
+    font-size: smaller;
+    display: inline-block;
+    margin-right: 1em;
+  }
+
+  .country-line {
+    fill: none;
+    stroke: $colorLine;
+    stroke-width: 0.15em;
+    opacity: 0.2;
+  }
+
+  .marker-line {
+    stroke: $colorRed;
+    stroke-width: 1px;
+    opacity: 0.2;
+  }
+
+  .active-tooltip {
+    circle,
+    text {
+      fill: $colorLine;
+    }
+
+    text {
+      font-size: smaller;
+      text-anchor: start;
+      display: inline;
+    }
+
+    .text-stroke {
+      stroke: white;
+      stroke-width: 2px;
+    }
+  }
+
+  .active {
+    opacity: 1;
+  }
 }
 
 .marker-text-x {
@@ -43,7 +76,7 @@ $tickTextColor: #777777;
 }
 
 // Info
-.info {
+.covid-19-countries .info {
   width: 600px;
   text-align: left;
 
