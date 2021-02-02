@@ -19,12 +19,39 @@ $tickTextColor: #777777;
   > * {
     display: block;
     margin: auto;
+    overflow: visible;
   }
 
   .info p {
     font-size: smaller;
     display: inline-block;
     margin-right: 1em;
+  }
+
+  // Dropdowns
+  .dropdowns {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    font-size: smaller;
+  }
+
+  .Dropdown-root {
+    cursor: pointer;
+    margin-right: 1em;
+  }
+
+  .dropdown-label {
+    margin-left: 30px;
+    margin-right: 10px;
+  }
+
+  .Dropdown-root {
+    display: inline-block;
+  }
+
+  .Dropdown-option.is-selected {
+    background-color: rgba(226, 58, 58, 0.1);
   }
 
   .country-line {
@@ -48,7 +75,7 @@ $tickTextColor: #777777;
 
     text {
       font-size: smaller;
-      text-anchor: start;
+      text-anchor: middle;
       display: inline;
     }
 

@@ -9,13 +9,12 @@ export const VoronoiOverlay = ({
   onHover,
 }) => {
   return useMemo(() => {
-    console.log("memoized");
     const points = allData.map((d) => [
       lineGenerator.x()(d),
       lineGenerator.y()(d),
     ]);
     const delaunay = Delaunay.from(points);
-    const voronoi = delaunay.voronoi([0, 0, innerWidth, innerHeight]);
+    const voronoi = delaunay.voronoi([-100, 0, innerWidth + 100, innerHeight]);
     return (
       <g className="voronoi">
         {points.map((point, i) => (

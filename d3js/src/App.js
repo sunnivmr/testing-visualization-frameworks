@@ -42,11 +42,14 @@ class App extends React.Component {
         </div>
         <div className="chart-grid">
           <CovidLineChartCountries />
+
           <CovidLineChart />
           {/*<ChoroplethMap />
           <MissingMigrantsCombined />
           <WorldMap />
-          <InteractiveChart />*/}
+          <InteractiveChart />
+          
+          */}
         </div>
         {/*
         <div className="section-title">

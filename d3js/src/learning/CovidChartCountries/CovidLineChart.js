@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { timeFormat, scaleLinear, scaleLog } from "d3";
-import { LineChart } from "./LineChart";
+import Dropdown from "react-dropdown";
 
+import { LineChart } from "./LineChart";
 import { useGlobalData } from "./useGlobalData";
 import { useCountriesData } from "./useCountriesData";
 
 import "./chart.scss";
+import "react-dropdown/style.css";
 
 // Dataset choices
 const datasets = [
@@ -13,11 +15,24 @@ const datasets = [
   { value: "cases", label: "Covid cases", data: null },
 ];
 
+const defaultDataset = datasets[0];
+
+// Set data for dropdown
+const setData = (value) => {
+  if (value === datasets[0].value) {
+    return datasets[0].data;
+  } else {
+    return datasets[1].data;
+  }
+};
+
 // Scale choices
 const scales = [
   { value: "linear", label: "Linear scale", scale: scaleLinear },
   { value: "log", label: "Logarithmic scale", scale: scaleLog },
 ];
+
+const defaultScale = scales[0];
 
 const width = 700;
 const height = 400;
@@ -57,6 +72,30 @@ export const CovidLineChart = () => {
     { value: formatNumber(totalCases), label: "Total global cases" },
   ];
 
+  const Dropdowns = () => {
+    return (
+      <div className="dropdowns">
+        <Dropdown
+          options={datasets}
+          onChange={(e) => {
+            console.log("Showing covid " + e.value);
+            setChosenValue(e.value);
+            setChosenData(setData(e.value));
+          }}
+          value={chosenValue ? chosenValue : defaultDataset}
+        />
+        <Dropdown
+          options={scales}
+          onChange={(e) => {
+            console.log("Using " + e.value + " scale");
+            setChosenScale(e.value);
+          }}
+          value={chosenScale ? chosenScale : defaultScale}
+        />
+      </div>
+    );
+  };
+
   return (
     <div className="big-chart-section covid-19-countries">
       <div className="info">
@@ -66,45 +105,7 @@ export const CovidLineChart = () => {
             <strong>{info.label + ":"}</strong> {info.value}
           </p>
         ))}
-        <div className="data-choices">
-          <form>
-            {datasets.map((dataset) => (
-              <div className="data-choice" key={dataset.value}>
-                <input
-                  checked={chosenValue === dataset.value}
-                  onChange={(e) => {
-                    setChosenValue(e.target.value);
-                    setChosenData(dataset.data);
-                  }}
-                  id={dataset.value}
-                  type="radio"
-                  value={dataset.value}
-                  name={dataset.label}
-                />
-                <label htmlFor={dataset.value}>{dataset.label}</label>
-              </div>
-            ))}
-          </form>
-        </div>
-        <div className="scale-choices">
-          <form>
-            {scales.map((scale) => (
-              <div className="scale-choice" key={scale.value}>
-                <input
-                  checked={scale.value === chosenScale}
-                  onChange={(e) => {
-                    setChosenScale(scale.value);
-                  }}
-                  id={scale.value}
-                  type="radio"
-                  value={scale.value}
-                  name={scale.label}
-                />
-                <label htmlFor={scale.value}>{scale.label}</label>
-              </div>
-            ))}
-          </form>
-        </div>
+        <Dropdowns />
       </div>
 
       <LineChart

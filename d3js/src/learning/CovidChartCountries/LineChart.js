@@ -85,7 +85,7 @@ export const LineChart = ({ data, width, height, scale }) => {
             />
           );
         }),
-      [data, lineGenerator]
+      []
     );
 
   const Tooltip = ({ activeRow, className }) => {
