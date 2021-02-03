@@ -12,7 +12,7 @@ import React from "react";
 // import { MissingMigrantsCombined } from "./learning/MissingMigrantsCombined/MissingMigrantsCombined";
 // import { ChoroplethMap } from "./learning/ChoroplethMap/ChoroplethMap";
 import { CovidLineChart as CovidLineChartCountries } from "./learning/CovidChartCountries/CovidLineChart";
-import { CovidLineChart } from "./learning/CovidChart/CovidLineChart";
+//import { CovidLineChart } from "./learning/CovidChart/CovidLineChart";
 
 // import TempData from "./api/TempData/TempData";
 
@@ -43,8 +43,8 @@ class App extends React.Component {
         <div className="chart-grid">
           <CovidLineChartCountries />
 
-          <CovidLineChart />
-          {/*<ChoroplethMap />
+          {/*<CovidLineChart />
+          <ChoroplethMap />
           <MissingMigrantsCombined />
           <WorldMap />
           <InteractiveChart />
