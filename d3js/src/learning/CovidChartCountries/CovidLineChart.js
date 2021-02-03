@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { timeFormat, scaleLinear, scaleLog } from "d3";
 import Dropdown from "react-dropdown";
+import Select from "react-select";
 
 import { LineChart } from "./LineChart";
 import { useGlobalData } from "./useGlobalData";
@@ -9,13 +10,12 @@ import { useCountriesData } from "./useCountriesData";
 import "./chart.scss";
 import "react-dropdown/style.css";
 
+// Using react-dropdown
 // Dataset choices
 const datasets = [
   { value: "deaths", label: "Covid deaths", data: null },
   { value: "cases", label: "Covid cases", data: null },
 ];
-
-const defaultDataset = datasets[0];
 
 // Set data for dropdown
 const setData = (value) => {
@@ -32,7 +32,16 @@ const scales = [
   { value: "log", label: "Logarithmic scale", scale: scaleLog },
 ];
 
-const defaultScale = scales[0];
+let defaultDataset = datasets[0];
+let defaultScale = scales[0];
+
+// Using react-select
+// Country choices
+const countries = [
+  { value: "NOR", label: "Norway" },
+  { value: "SWE", label: "Sweden" },
+  { value: "DNM", label: "Denmark" },
+];
 
 const width = 700;
 const height = 400;
@@ -42,27 +51,34 @@ const formatNumber = (d) => d.toLocaleString("en-US");
 export const CovidLineChart = () => {
   const [cases, deaths] = useCountriesData();
   const [casesGlobal, deathsGlobal] = useGlobalData();
-  const [chosenValue, setChosenValue] = useState("deaths");
   const [chosenData, setChosenData] = useState(null);
-  const [chosenScale, setChosenScale] = useState("linear");
+
+  const [chosenScale, setChosenScale] = useState(defaultScale);
+  const [chosenDataset, setChosenDataset] = useState(defaultDataset);
 
   if (!deaths || !cases || !deathsGlobal || !casesGlobal) {
     return <pre></pre>;
   }
 
   // Don't know if this is the best solution
-  if (!chosenData) {
+  if (!chosenData || !chosenScale) {
     return <p>{setChosenData(deaths)}</p>;
   }
+
+  // Set default values
+  defaultDataset = chosenData === datasets[1] ? datasets[1] : datasets[0];
+  defaultScale = chosenScale === scales[1] ? scales[1] : scales[0];
 
   // Sets data to datasets to use it in graph
   datasets[0].data = deaths;
   datasets[1].data = cases;
 
+  // Latest date with records
   const latestDate = timeFormat("%m/%d/%y")(
     deathsGlobal[deathsGlobal.length - 1].date
   );
 
+  // Total deaths and cases
   let totalDeaths = deathsGlobal[deathsGlobal.length - 1].total;
   let totalCases = casesGlobal[casesGlobal.length - 1].total;
 
@@ -72,25 +88,64 @@ export const CovidLineChart = () => {
     { value: formatNumber(totalCases), label: "Total global cases" },
   ];
 
+  // Handle change of data
+  const handleDataChange = (e) => {
+    setChosenDataset(e);
+    setChosenData(setData(e.value));
+    console.log("Chosen data: " + e.value);
+  };
+
+  // Handle change of scale
+  const handleScaleChange = (e) => {
+    setChosenScale(e);
+    console.log("Chosen scale: " + e.value);
+  };
+
+  const Selects = () => {
+    return (
+      <div className="dropdowns">
+        <Select
+          options={datasets}
+          onChange={(e) => handleDataChange(e)}
+          value={chosenDataset}
+        />
+        <Select
+          options={scales}
+          onChange={(e) => handleScaleChange(e)}
+          value={chosenScale}
+        />
+      </div>
+    );
+  };
+
   const Dropdowns = () => {
     return (
       <div className="dropdowns">
         <Dropdown
           options={datasets}
           onChange={(e) => {
-            console.log("Showing covid " + e.value);
-            setChosenValue(e.value);
-            setChosenData(setData(e.value));
+            handleDataChange(e);
           }}
-          value={chosenValue ? chosenValue : defaultDataset}
+          value={chosenDataset ? chosenDataset.value : defaultDataset.value}
         />
         <Dropdown
           options={scales}
-          onChange={(e) => {
-            console.log("Using " + e.value + " scale");
-            setChosenScale(e.value);
-          }}
-          value={chosenScale ? chosenScale : defaultScale}
+          onChange={(e) => handleScaleChange(e)}
+          value={chosenScale ? chosenScale.value : defaultScale.value}
+        />
+      </div>
+    );
+  };
+
+  const CountrySelect = () => {
+    return (
+      <div className="country-select">
+        <Select
+          options={countries}
+          placeholder="Select countries"
+          isClearable
+          isSearchable
+          isMulti
         />
       </div>
     );
@@ -105,15 +160,16 @@ export const CovidLineChart = () => {
             <strong>{info.label + ":"}</strong> {info.value}
           </p>
         ))}
-        <Dropdowns />
+        <Selects />
       </div>
 
       <LineChart
         data={chosenData}
         width={width}
         height={height}
-        scale={chosenScale}
+        scale={chosenScale.value}
       />
+      <CountrySelect />
     </div>
   );
 };
