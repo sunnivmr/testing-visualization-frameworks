@@ -23,30 +23,57 @@ const transformCountries = (rawData, dataType) => {
 
   // Get timeseries data for each country
   const dates = rawData.columns.slice(4);
-  return countriesData.map((d) => {
+
+  const countryTimeseries = countriesData.map((d) => {
     const countryName = d["Country/Region"];
-    const countryTimeseries = dates.map((date) => ({
+    const timeseries = dates.map((date) => ({
       date: parseDate(date),
       total: +d[date],
       dataType: dataType,
       countryName: countryName,
     }));
 
-    countryTimeseries.countryName = countryName;
-    return countryTimeseries;
+    timeseries.countryName = countryName;
+    return timeseries;
   });
+
+  return countryTimeseries;
+};
+
+// Filter to only show top countries
+const filterCountries = (
+  countryTimeseries,
+  number = countryTimeseries.length()
+) => {
+  // Sort by total
+  const countryTimeseriesSorted = countryTimeseries.sort((a, b) =>
+    a.slice(-1)[0].total < b.slice(-1)[0].total ? 1 : -1
+  );
+  // Filter out a number of countries
+  const countryTimeseriesFiltered = countryTimeseriesSorted.slice(0, number);
+
+  return countryTimeseriesFiltered;
 };
 
 export const useCountriesData = () => {
   const [cases, setCases] = useState(null);
   const [deaths, setDeaths] = useState(null);
 
+  const numberOfCountries = 10;
+
   useEffect(() => {
     csv(csvUrlCasesUpdated).then((rawCases) => {
-      setCases(transformCountries(rawCases, "case"));
+      setCases(
+        filterCountries(transformCountries(rawCases, "case"), numberOfCountries)
+      );
     });
     csv(csvUrlDeathsUpdated).then((rawDeaths) => {
-      setDeaths(transformCountries(rawDeaths, "death"));
+      setDeaths(
+        filterCountries(
+          transformCountries(rawDeaths, "death"),
+          numberOfCountries
+        )
+      );
     });
   }, []);
 
