@@ -45,11 +45,12 @@ const countries = [
 
 const width = 700;
 const height = 400;
+const numberOfCountries = 5;
 
 const formatNumber = (d) => d.toLocaleString("en-US");
 
 export const CovidLineChart = () => {
-  const [cases, deaths] = useCountriesData();
+  const [cases, deaths] = useCountriesData(numberOfCountries);
   const [casesGlobal, deathsGlobal] = useGlobalData();
   const [chosenData, setChosenData] = useState(null);
 

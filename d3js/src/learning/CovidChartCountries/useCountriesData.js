@@ -55,11 +55,9 @@ const filterCountries = (
   return countryTimeseriesFiltered;
 };
 
-export const useCountriesData = () => {
+export const useCountriesData = (numberOfCountries = 50) => {
   const [cases, setCases] = useState(null);
   const [deaths, setDeaths] = useState(null);
-
-  const numberOfCountries = 10;
 
   useEffect(() => {
     csv(csvUrlCasesUpdated).then((rawCases) => {
