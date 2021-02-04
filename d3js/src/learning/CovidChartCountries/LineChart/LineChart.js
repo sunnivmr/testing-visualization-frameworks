@@ -11,8 +11,8 @@ import {
 } from "d3";
 // import { MarkerLineY } from "./markerlines/MarkerLineY";
 // import { MarkerLineX } from "./markerlines/MarkerLineX";
-import { XAxis } from "./axes/XAxis";
-import { YAxis } from "./axes/YAxis";
+import { XAxis } from "../axes/XAxis";
+import { YAxis } from "../axes/YAxis";
 
 import { VoronoiOverlay } from "./VoronoiOverlay";
 

@@ -3,9 +3,9 @@ import { timeFormat, scaleLinear, scaleLog } from "d3";
 import Dropdown from "react-dropdown";
 import Select from "react-select";
 
-import { LineChart } from "./LineChart";
-import { useGlobalData } from "./useGlobalData";
-import { useCountriesData } from "./useCountriesData";
+import { LineChart } from "./LineChart/LineChart";
+import { useGlobalData } from "./data/useGlobalData";
+import { useCountriesData } from "./data/useCountriesData";
 
 import "./chart.scss";
 import "react-dropdown/style.css";
