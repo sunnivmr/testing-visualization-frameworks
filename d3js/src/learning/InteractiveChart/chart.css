@@ -1,0 +1,30 @@
+select {
+  font-size: 1em;
+}
+
+.color-legend {
+  fill: #635f5d;
+  font-size: small;
+  cursor: default;
+}
+
+.dropdowns {
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.dropdown-label {
+  margin-left: 30px;
+  margin-right: 10px;
+  font-size: smaller;
+  font-weight: bold;
+  color: #635f5d;
+}
+
+.Dropdown-root {
+  width: 192px;
+  display: inline-block;
+}

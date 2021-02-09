@@ -1,0 +1,201 @@
+$colorRed: rgb(226, 58, 58);
+$colorBlue: rgb(58, 69, 226);
+$colorWhite: white;
+
+$colorLine: $colorRed;
+
+$tickLineColor: #eeeeee;
+$tickTextColor: #777777;
+
+// Voronoi
+.voronoi path {
+  stroke: none;
+  fill: none;
+  pointer-events: all;
+}
+
+// Chart
+.covid-19-countries {
+  > * {
+    display: block;
+    margin: auto;
+    overflow: visible;
+  }
+
+  .info p {
+    font-size: smaller;
+    display: inline-block;
+    margin-right: 1em;
+  }
+
+  // Dropdowns
+  .dropdowns {
+    display: flex;
+    font-size: smaller;
+  }
+
+  .dropdowns > * {
+    margin-right: 1em;
+    width: 200px;
+  }
+
+  .country-select {
+    margin-top: 2.5em;
+    width: 600px;
+    font-size: smaller;
+    text-align: left;
+  }
+
+  .country-select > * {
+    width: 400px;
+  }
+
+  /*
+
+  .Dropdown-root {
+    cursor: pointer;
+    margin-right: 1em;
+  }
+
+  .dropdown-label {
+    margin-left: 30px;
+    margin-right: 10px;
+  }
+
+  .Dropdown-root {
+    display: inline-block;
+  }
+
+  .Dropdown-option.is-selected {
+    background-color: rgba(226, 58, 58, 0.1);
+  }
+
+  .Dropdown-option:hover {
+    background-color: rgba(226, 58, 58, 0.3);
+  } */
+
+  .country-line {
+    fill: none;
+    stroke: $colorLine;
+    stroke-width: 0.15em;
+    opacity: 0.2;
+  }
+
+  .marker-line {
+    stroke: $colorRed;
+    stroke-width: 1px;
+    opacity: 0.2;
+  }
+
+  .active-tooltip {
+    circle,
+    text {
+      fill: $colorLine;
+    }
+
+    text {
+      font-size: smaller;
+      text-anchor: middle;
+      display: inline;
+    }
+
+    .text-stroke {
+      stroke: white;
+      stroke-width: 2px;
+    }
+  }
+
+  .active {
+    opacity: 1;
+  }
+}
+
+.marker-text-x {
+  font-size: x-small;
+  fill: $colorRed;
+  text-anchor: middle;
+}
+
+.marker-text-y {
+  font-size: x-small;
+  fill: $colorRed;
+  text-anchor: end;
+}
+
+// Info
+.covid-19-countries .info {
+  width: 600px;
+  text-align: left;
+
+  h4 {
+    text-align: center;
+  }
+}
+
+// Radio datas
+.data-choices,
+.scale-choices {
+  display: inline-block;
+  margin-right: 1em;
+}
+
+.data-choice,
+.scale-choice {
+  cursor: pointer;
+  display: inline;
+  font-size: smaller;
+
+  input {
+    display: none;
+  }
+
+  input:checked + label {
+    color: $colorWhite;
+    background-color: $colorRed;
+    cursor: default;
+  }
+
+  label {
+    display: inline-block;
+    background-color: $colorWhite;
+    border: solid 1px $colorRed;
+    border-radius: 0.5em;
+
+    margin-right: 0.5em;
+    padding: 0.5em;
+    cursor: pointer;
+    color: $colorRed;
+  }
+
+  label:hover {
+    background-color: $colorRed;
+    color: $colorWhite;
+  }
+}
+
+.scale-choice {
+  input:checked + label {
+    background-color: $colorBlue;
+  }
+
+  label {
+    color: $colorBlue;
+    border: solid 1px $colorBlue;
+  }
+
+  label:hover {
+    background-color: $colorBlue;
+  }
+}
+
+.domain {
+  display: none;
+}
+
+.tick line {
+  stroke: $tickLineColor;
+}
+
+.tick text {
+  color: $tickTextColor;
+}

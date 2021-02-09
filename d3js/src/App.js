@@ -1,40 +1,26 @@
 import React from "react";
-import * as d3 from "d3";
+// import { Faces } from "./learning/Face/Faces";
+// import { ColorData } from "./learning/ColorData/ColorData";
+// import { BarChart } from "./learning/BarChart/BarChart";
+// import { ScatterPlot } from "./learning/ScatterPlot/ScatterPlot";
+// import { LineChart } from "./learning/LineChart/LineChart";
+
+// import { InteractiveChart } from "./learning/InteractiveChart/InteractiveChart";
+// import { WorldMap } from "./learning/WorldMap/WorldMap";
+// import { MissingMigrants } from "./learning/MissingMigrants/MissingMigrants";
+// import { MissingMigrantsMap } from "./learning/MissingMigrantsMap/MissingMigrantsMap";
+// import { MissingMigrantsCombined } from "./learning/MissingMigrantsCombined/MissingMigrantsCombined";
+// import { ChoroplethMap } from "./learning/ChoroplethMap/ChoroplethMap";
+import { CovidLineChart as CovidLineChartCountries } from "./learning/CovidChartCountries/CovidLineChart";
+//import { CovidLineChart } from "./learning/CovidChart/CovidLineChart";
+
+// import TempData from "./api/TempData/TempData";
+
+//import { LineChartWProps } from "./components/LineChartWProps/LineChartWProps";
 
 import "./App.css";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.myRef = React.createRef();
-    this.dataset = [100, 200, 300, 400, 500];
-    this.yellow = "rgba(255, 200, 100, 0.5)";
-    this.pink = "rgba(235, 49, 170, 0.5)";
-    this.green = "rgba(100, 200, 100, 0.5)";
-    this.blue = "rgba(100, 100, 200, 0.5)";
-  }
-
-  componentDidMount() {
-    let size = 500;
-    let svg = d3
-      .select(this.myRef.current)
-      .append("svg")
-      .attr("width", size)
-      .attr("height", size);
-
-    let rect_width = 95;
-    svg
-      .selectAll("rect")
-      .data(this.dataset)
-      .enter()
-      .append("rect")
-      .attr("x", (d, i) => 5 + i * (rect_width + 5))
-      .attr("y", (d) => size - d)
-      .attr("width", rect_width)
-      .attr("height", (d) => d)
-      .attr("fill", this.pink);
-  }
-
   render() {
     return (
       <div className="App">
@@ -44,24 +30,50 @@ class App extends React.Component {
         <div className="text">
           <p>Testing D3.js library for Master's Thesis 2020/2021</p>
         </div>
-        <div className="chart-title">
-          <h2>Normal charts</h2>
+        <div className="section-title">
+          <h2>Learn D3.js</h2>
         </div>
-        <div className="chart-grid normal-charts"></div>
-        <div className="chart-title">
+        <div className="chart-grid">
+          {/**<Faces />
+          <ColorData />**/}
+        </div>
+        <div className="section-title">
+          <h2>Advanced charts</h2>
+        </div>
+        <div className="chart-grid">
+          <CovidLineChartCountries />
+
+          {/*<CovidLineChart />
+          <ChoroplethMap />
+          <MissingMigrantsCombined />
+          <WorldMap />
+          <InteractiveChart />
+          
+          */}
+        </div>
+        {/*
+        <div className="section-title">
+          <h2>Basic charts</h2>
+        </div>
+        <div className="chart-grid">
+          <BarChart />
+          <ScatterPlot />
+          <LineChart />
+        </div>
+
+        <div className="section-title">
           <h2>Multiple axes charts</h2>
         </div>
         <div className="chart-grid multiple-axes-charts"></div>
         <div className="api-chart">
-          <div className="chart-title">
+          <div className="section-title">
             <h2>Data from API</h2>
           </div>
-        </div>
+          <LineChartWProps />
+        </div>/
         <div className="text aligned-left">
           <p>Sunniva Mathea Runde, Kaja Løvsjø Solberg</p>
-        </div>
-
-        <div ref={this.myRef}></div>
+        </div>*/}
       </div>
     );
   }

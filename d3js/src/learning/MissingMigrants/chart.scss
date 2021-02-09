@@ -1,0 +1,35 @@
+/* Marks styling */
+
+$pink: rgb(248, 156, 228);
+$blue: rgb(100, 150, 255);
+
+.migrants {
+  .mark-circle {
+    fill: $blue;
+  }
+
+  .axis-label {
+    text-anchor: middle;
+    font-size: smaller;
+    font-weight: bold;
+    fill: #635f5d;
+  }
+
+  /* Axes styling */
+
+  .tick-line {
+    stroke: #c0c0bb;
+  }
+
+  .tick-text-x {
+    text-anchor: middle;
+    font-size: xx-small;
+    fill: #635f5d;
+  }
+
+  .tick-text-y {
+    text-anchor: end;
+    font-size: x-small;
+    fill: #635f5d;
+  }
+}

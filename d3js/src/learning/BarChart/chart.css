@@ -1,0 +1,29 @@
+/* Marks styling */
+.mark-bar {
+  fill: rgb(221, 241, 148);
+}
+
+.axis-label {
+  text-anchor: middle;
+  font-size: smaller;
+  font-weight: bold;
+  fill: #635f5d;
+}
+
+/* Axes styling */
+
+.tick-line {
+  stroke: #c0c0bb;
+}
+
+.tick-text-x {
+  text-anchor: middle;
+  font-size: x-small;
+  fill: #635f5d;
+}
+
+.tick-text-y {
+  text-anchor: end;
+  font-size: x-small;
+  fill: #635f5d;
+}
