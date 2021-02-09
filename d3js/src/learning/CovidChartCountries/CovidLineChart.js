@@ -204,6 +204,8 @@ export const CovidLineChart = () => {
         height={height}
         scale={chosenScale.value}
       />
+
+      <CountrySelect />
     </div>
   );
 };

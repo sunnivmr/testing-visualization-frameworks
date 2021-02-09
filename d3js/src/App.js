@@ -11,7 +11,7 @@ import React from "react";
 // import { MissingMigrantsMap } from "./learning/MissingMigrantsMap/MissingMigrantsMap";
 // import { MissingMigrantsCombined } from "./learning/MissingMigrantsCombined/MissingMigrantsCombined";
 // import { ChoroplethMap } from "./learning/ChoroplethMap/ChoroplethMap";
-import { CovidLineChart as CovidLineChartCountries } from "./learning/CovidChartCountries/CovidLineChart";
+import { CovidLineChart as CovidLineChartCountries } from "./learning/CovidChartCountriesStable/CovidLineChart";
 //import { CovidLineChart } from "./learning/CovidChart/CovidLineChart";
 
 // import TempData from "./api/TempData/TempData";
