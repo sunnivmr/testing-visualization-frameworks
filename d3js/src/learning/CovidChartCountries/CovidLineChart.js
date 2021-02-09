@@ -1,11 +1,11 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { timeFormat, scaleLinear, scaleLog } from "d3";
 import Dropdown from "react-dropdown";
 import Select from "react-select";
 
-import { LineChart } from "./LineChart";
-import { useGlobalData } from "./useGlobalData";
-import { useCountriesData } from "./useCountriesData";
+import { LineChart } from "./LineChart/LineChart";
+import { useGlobalData } from "./data/useGlobalData";
+import { useCountriesData } from "./data/useCountriesData";
 
 import "./chart.scss";
 import "react-dropdown/style.css";
@@ -17,15 +17,6 @@ const datasets = [
   { value: "cases", label: "Covid cases", data: null },
 ];
 
-// Set data for dropdown
-const setData = (value) => {
-  if (value === datasets[0].value) {
-    return datasets[0].data;
-  } else {
-    return datasets[1].data;
-  }
-};
-
 // Scale choices
 const scales = [
   { value: "linear", label: "Linear scale", scale: scaleLinear },
@@ -34,44 +25,53 @@ const scales = [
 
 let defaultDataset = datasets[0];
 let defaultScale = scales[0];
-
-// Using react-select
-// Country choices
-const countries = [
-  { value: "NOR", label: "Norway" },
-  { value: "SWE", label: "Sweden" },
-  { value: "DNM", label: "Denmark" },
-];
+let defaultCountries = [];
 
 const width = 700;
 const height = 400;
+const numberOfCountries = 10;
 
 const formatNumber = (d) => d.toLocaleString("en-US");
 
 export const CovidLineChart = () => {
-  const [cases, deaths] = useCountriesData();
+  const [cases, deaths] = useCountriesData(numberOfCountries);
   const [casesGlobal, deathsGlobal] = useGlobalData();
-  const [chosenData, setChosenData] = useState(null);
+
+  const [graphData, setGraphData] = useState(null);
+  const [chosenGraphData, setChosenGraphData] = useState(null);
 
   const [chosenScale, setChosenScale] = useState(defaultScale);
   const [chosenDataset, setChosenDataset] = useState(defaultDataset);
+
+  const [chosenCountries, setChosenCountries] = useState(defaultCountries);
+
+  useEffect(() => {
+    console.log("Updated countriesData");
+    setChosenGraphData(graphData);
+  }, [graphData]);
 
   if (!deaths || !cases || !deathsGlobal || !casesGlobal) {
     return <pre></pre>;
   }
 
   // Don't know if this is the best solution
-  if (!chosenData || !chosenScale) {
-    return <p>{setChosenData(deaths)}</p>;
+  if (!graphData || !chosenScale) {
+    return <p>{setGraphData(deaths)}</p>;
   }
 
   // Set default values
-  defaultDataset = chosenData === datasets[1] ? datasets[1] : datasets[0];
+  defaultDataset = graphData === datasets[1] ? datasets[1] : datasets[0];
   defaultScale = chosenScale === scales[1] ? scales[1] : scales[0];
 
   // Sets data to datasets to use it in graph
   datasets[0].data = deaths;
   datasets[1].data = cases;
+
+  // Set country names for multi-select
+  const countryNames = graphData.map((countryData) => ({
+    value: countryData.countryName,
+    label: countryData.countryName,
+  }));
 
   // Latest date with records
   const latestDate = timeFormat("%m/%d/%y")(
@@ -88,10 +88,29 @@ export const CovidLineChart = () => {
     { value: formatNumber(totalCases), label: "Total global cases" },
   ];
 
+  // Set data for dropdown
+  const setData = (value) => {
+    if (value === datasets[0].value) {
+      return datasets[0].data;
+    } else if (value === datasets[1].value) {
+      return datasets[1].data;
+    }
+    if (value.length < 1) {
+      console.log("Set all data");
+      return graphData;
+
+      //return newData;
+    } else {
+      console.log("Set chosen data");
+      //console.log(value);
+      return value;
+    }
+  };
+
   // Handle change of data
   const handleDataChange = (e) => {
     setChosenDataset(e);
-    setChosenData(setData(e.value));
+    setGraphData(setData(e.value));
     console.log("Chosen data: " + e.value);
   };
 
@@ -99,6 +118,39 @@ export const CovidLineChart = () => {
   const handleScaleChange = (e) => {
     setChosenScale(e);
     console.log("Chosen scale: " + e.value);
+  };
+
+  // Handle change of countries
+  const handleCountriesChange = (e) => {
+    setChosenCountries(e);
+    const chosenCountryNames = e.map((country) => country.label);
+
+    console.log(
+      "Selected countries: " + chosenCountryNames.map((name) => " " + name)
+    );
+
+    let newChosenData = [];
+
+    newChosenData.push(
+      graphData.filter((countryData) =>
+        chosenCountryNames.includes(countryData.countryName)
+      )
+    );
+
+    setChosenGraphData(setData(newChosenData[0]));
+    console.log(newChosenData[0]);
+
+    /*
+
+    // Check if country is displayed in graph
+    chosenData.map((countryData) => {
+      let isIncluded = false;
+      const countryName = countryData[0].countryName;
+      chosenCountries.map((country) => {
+        isIncluded = Object.values(country).includes(countryName);
+        
+      });
+    });*/
   };
 
   const Selects = () => {
@@ -122,7 +174,9 @@ export const CovidLineChart = () => {
     return (
       <div className="country-select">
         <Select
-          options={countries}
+          options={countryNames}
+          onChange={(e) => handleCountriesChange(e)}
+          value={chosenCountries}
           placeholder="Select countries"
           isClearable
           isSearchable
@@ -145,7 +199,7 @@ export const CovidLineChart = () => {
       </div>
 
       <LineChart
-        data={chosenData}
+        data={chosenGraphData ? chosenGraphData : graphData}
         width={width}
         height={height}
         scale={chosenScale.value}

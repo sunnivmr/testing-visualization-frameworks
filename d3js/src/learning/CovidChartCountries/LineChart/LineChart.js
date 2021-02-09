@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import {
   scaleTime,
   max,
@@ -11,8 +11,8 @@ import {
 } from "d3";
 // import { MarkerLineY } from "./markerlines/MarkerLineY";
 // import { MarkerLineX } from "./markerlines/MarkerLineX";
-import { XAxis } from "./axes/XAxis";
-import { YAxis } from "./axes/YAxis";
+import { XAxis } from "../axes/XAxis";
+import { YAxis } from "../axes/YAxis";
 
 import { VoronoiOverlay } from "./VoronoiOverlay";
 
@@ -32,6 +32,7 @@ const formatNumber = format(",");
 
 export const LineChart = ({ data, width, height, scale }) => {
   const [activeRow, setActiveRow] = useState(null);
+  //const [isActiveRowInData, setIsActiveRowInData] = useState(false);
 
   const innerWidth = width - margin.right - margin.left;
   const innerHeight = height - margin.top - margin.bottom;
@@ -47,6 +48,11 @@ export const LineChart = ({ data, width, height, scale }) => {
   );
 
   const handleVoronoiHover = useCallback(setActiveRow, [setActiveRow]);
+
+  /*
+  const isActiveRowInData = useMemo(() =>
+    data.map((country) => country.includes(activeRow.countryName), [data])
+  );*/
 
   const xScale = useMemo(
     () => scaleTime().domain(extent(allData, xValue)).range([0, innerWidth]),
@@ -123,10 +129,11 @@ export const LineChart = ({ data, width, height, scale }) => {
             <path
               className="country-line active"
               d={lineGenerator(
-                data.find(
-                  (countryTimeseries) =>
+                data.find((countryTimeseries) => {
+                  return (
                     countryTimeseries.countryName === activeRow.countryName
-                )
+                  );
+                })
               )}
             />
             <g
