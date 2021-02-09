@@ -29,14 +29,16 @@ let defaultCountries = [];
 
 const width = 700;
 const height = 400;
-const numberOfCountries = 3;
+const numberOfCountries = 10;
 
 const formatNumber = (d) => d.toLocaleString("en-US");
 
 export const CovidLineChart = () => {
   const [cases, deaths] = useCountriesData(numberOfCountries);
   const [casesGlobal, deathsGlobal] = useGlobalData();
-  const [chosenData, setChosenData] = useState(null);
+
+  const [graphData, setGraphData] = useState(null);
+  const [chosenGraphData, setChosenGraphData] = useState(null);
 
   const [chosenScale, setChosenScale] = useState(defaultScale);
   const [chosenDataset, setChosenDataset] = useState(defaultDataset);
@@ -45,19 +47,20 @@ export const CovidLineChart = () => {
 
   useEffect(() => {
     console.log("Updated countriesData");
-  }, [chosenData]);
+    setChosenGraphData(graphData);
+  }, [graphData]);
 
   if (!deaths || !cases || !deathsGlobal || !casesGlobal) {
     return <pre></pre>;
   }
 
   // Don't know if this is the best solution
-  if (!chosenData || !chosenScale) {
-    return <p>{setChosenData(deaths)}</p>;
+  if (!graphData || !chosenScale) {
+    return <p>{setGraphData(deaths)}</p>;
   }
 
   // Set default values
-  defaultDataset = chosenData === datasets[1] ? datasets[1] : datasets[0];
+  defaultDataset = graphData === datasets[1] ? datasets[1] : datasets[0];
   defaultScale = chosenScale === scales[1] ? scales[1] : scales[0];
 
   // Sets data to datasets to use it in graph
@@ -65,7 +68,7 @@ export const CovidLineChart = () => {
   datasets[1].data = cases;
 
   // Set country names for multi-select
-  const countryNames = cases.map((countryData) => ({
+  const countryNames = graphData.map((countryData) => ({
     value: countryData.countryName,
     label: countryData.countryName,
   }));
@@ -87,27 +90,27 @@ export const CovidLineChart = () => {
 
   // Set data for dropdown
   const setData = (value) => {
-    console.log(chosenData);
-    console.log(value);
+    if (value === datasets[0].value) {
+      return datasets[0].data;
+    } else if (value === datasets[1].value) {
+      return datasets[1].data;
+    }
+    if (value.length < 1) {
+      console.log("Set all data");
+      return graphData;
 
-    const newData = chosenData.filter((data) => value.includes(data));
-
-    console.log(newData);
-
-    if (value.length) {
-      return chosenData;
       //return newData;
     } else {
-      return chosenData;
+      console.log("Set chosen data");
+      //console.log(value);
+      return value;
     }
-
-    return chosenData;
   };
 
   // Handle change of data
   const handleDataChange = (e) => {
     setChosenDataset(e);
-    setChosenData(setData(e.value));
+    setGraphData(setData(e.value));
     console.log("Chosen data: " + e.value);
   };
 
@@ -129,12 +132,12 @@ export const CovidLineChart = () => {
     let newChosenData = [];
 
     newChosenData.push(
-      chosenData.filter((countryData) =>
+      graphData.filter((countryData) =>
         chosenCountryNames.includes(countryData.countryName)
       )
     );
 
-    setChosenData(setData(newChosenData[0]));
+    setChosenGraphData(setData(newChosenData[0]));
     console.log(newChosenData[0]);
 
     /*
@@ -196,7 +199,7 @@ export const CovidLineChart = () => {
       </div>
 
       <LineChart
-        data={chosenData}
+        data={chosenGraphData ? chosenGraphData : graphData}
         width={width}
         height={height}
         scale={chosenScale.value}
