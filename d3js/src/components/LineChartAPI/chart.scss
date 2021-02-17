@@ -1,0 +1,27 @@
+$colorLine: #b6db10;
+$tickLineColor: #c0c0bbaf;
+$tickTextColor: #4d4d4d;
+
+.api > * {
+  overflow: visible;
+}
+
+.domain {
+  stroke: none;
+}
+
+.api-line {
+  fill: none;
+  stroke: $colorLine;
+  stroke-width: 3px;
+}
+
+/* Axes styling */
+
+.tick line {
+  stroke: $tickLineColor;
+}
+
+.tick text {
+  color: $tickTextColor;
+}

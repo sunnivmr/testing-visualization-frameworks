@@ -9,7 +9,7 @@ export function useData(fromDate, untilDate, dataType) {
     // Retrieve data from API
     // Returns measurements-array with data
     async function getDataFromAPI() {
-      const urlData = `http://ibmrisvol.ibm.ntnu.no/data?from=${fromDate}T00%3A00%3A00&until=${untilDate}T00%3A10%3A00&identifier=${dataType}`;
+      const urlData = `http://ibmrisvol.ibm.ntnu.no/data?from=${fromDate}%3A00%3A00&until=${untilDate}%3A00%3A00&identifier=${dataType}`;
       const response = await fetch(urlData);
       const data = await response.json();
       return data.data[0].measurements;
@@ -34,19 +34,22 @@ export function useData(fromDate, untilDate, dataType) {
     var measurements = measurementsData.map((data) => Number(data.measurement));
 
     // Return timestamps
-    const timestamps = measurementsData.map((data) =>
-      data.time_stamp_utc.substring(11, 16)
+    const timestamps = measurementsData.map(
+      (data) => new Date(data.time_stamp_utc)
     );
+
     // Build the data for input with the first item being the description
-    inputMeasurementsData[0] = dataDescription;
+    const newMeasurementsData = [];
+    newMeasurementsData.info = dataDescription;
 
     measurements.map((data, i) =>
-      inputMeasurementsData.push({
+      newMeasurementsData.push({
         timestamp: timestamps[i],
         measurement: measurements[i],
       })
     );
-  }, []);
 
+    setInputMeasurementsData(newMeasurementsData);
+  });
   return inputMeasurementsData;
 }

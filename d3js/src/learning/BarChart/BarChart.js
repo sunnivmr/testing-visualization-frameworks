@@ -3,6 +3,7 @@ import { scaleBand, scaleLinear, max, format } from "d3";
 import { useData } from "./useData";
 
 import { AxisBottom } from "./AxisBottom";
+import { AxisTop } from "./AxisTop";
 import { AxisLeft } from "./AxisLeft";
 import { Marks } from "./Marks";
 
@@ -10,7 +11,7 @@ import "./chart.css";
 
 const width = 700;
 const height = 400;
-const margin = { top: 10, right: 50, bottom: 60, left: 150 };
+const margin = { top: 20, right: 50, bottom: 60, left: 150 };
 const xAxisLabelOffset = 40;
 
 const innerHeight = height - margin.top - margin.bottom;
@@ -48,6 +49,11 @@ export const BarChart = () => {
         <svg width={width} height={height}>
           <g transform={`translate(${margin.left}, ${margin.top})`}>
             <AxisBottom
+              xScale={xScale}
+              innerHeight={innerHeight}
+              tickFormat={xAxisTickFormat}
+            />
+            <AxisTop
               xScale={xScale}
               innerHeight={innerHeight}
               tickFormat={xAxisTickFormat}

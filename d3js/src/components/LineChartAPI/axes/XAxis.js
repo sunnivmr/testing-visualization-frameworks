@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import { useEffect } from "react";
-import { select, axisBottom, timeFormat } from "d3";
+import { select, axisBottom } from "d3";
 
-export const XAxis = ({ xScale, innerHeight, tickPadding = 5 }) => {
+export const XAxis = ({ xScale, innerHeight, tickPadding = 5, tickFormat }) => {
   const ref = useRef();
 
   useEffect(() => {
@@ -10,7 +10,7 @@ export const XAxis = ({ xScale, innerHeight, tickPadding = 5 }) => {
     const xAxis = axisBottom(xScale)
       .tickSize(-innerHeight)
       .tickPadding(tickPadding)
-      .tickFormat(timeFormat("%b %y"));
+      .tickFormat(tickFormat);
     xAxisG.call(xAxis);
   }, [innerHeight, tickPadding, xScale]);
 

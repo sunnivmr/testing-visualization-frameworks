@@ -4,6 +4,7 @@ import { useData } from "./useData";
 
 import { AxisBottom } from "./AxisBottom";
 import { AxisLeft } from "./AxisLeft";
+import { AxisRight } from "./AxisRight";
 import { Marks } from "./Marks";
 
 import "./chart.css";
@@ -59,6 +60,11 @@ export const LineChart = () => {
               innerHeight={innerHeight}
               tickFormat={xAxisTickFormat}
               tickOffset={10}
+            />
+            <AxisRight
+              yScale={yScale}
+              innerWidth={innerWidth}
+              tickOffset={20}
             />
             <AxisLeft yScale={yScale} innerWidth={innerWidth} tickOffset={7} />
             <Marks

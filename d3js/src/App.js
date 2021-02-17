@@ -1,9 +1,9 @@
 import React from "react";
 // import { Faces } from "./learning/Face/Faces";
 // import { ColorData } from "./learning/ColorData/ColorData";
-// import { BarChart } from "./learning/BarChart/BarChart";
-// import { ScatterPlot } from "./learning/ScatterPlot/ScatterPlot";
-// import { LineChart } from "./learning/LineChart/LineChart";
+import { BarChart } from "./learning/BarChart/BarChart";
+import { ScatterPlot } from "./learning/ScatterPlot/ScatterPlot";
+import { LineChart } from "./learning/LineChart/LineChart";
 
 // import { InteractiveChart } from "./learning/InteractiveChart/InteractiveChart";
 // import { WorldMap } from "./learning/WorldMap/WorldMap";
@@ -16,7 +16,7 @@ import { CovidLineChart as CovidLineChartCountries } from "./learning/CovidChart
 
 // import TempData from "./api/TempData/TempData";
 
-//import { LineChartWProps } from "./components/LineChartWProps/LineChartWProps";
+import { LineChartAPI } from "./components/LineChartAPI/LineChartAPI";
 
 import "./App.css";
 
@@ -34,15 +34,14 @@ class App extends React.Component {
           <h2>Learn D3.js</h2>
         </div>
         <div className="chart-grid">
-          {/**<Faces />
-          <ColorData />**/}
+          <LineChart />
+          <BarChart />
         </div>
         <div className="section-title">
           <h2>Advanced charts</h2>
         </div>
         <div className="chart-grid">
           <CovidLineChartCountries />
-
           {/*<CovidLineChart />
           <ChoroplethMap />
           <MissingMigrantsCombined />
@@ -65,15 +64,15 @@ class App extends React.Component {
           <h2>Multiple axes charts</h2>
         </div>
         <div className="chart-grid multiple-axes-charts"></div>
+        */}
         <div className="api-chart">
           <div className="section-title">
             <h2>Data from API</h2>
           </div>
-          <LineChartWProps />
-        </div>/
+        </div>
         <div className="text aligned-left">
           <p>Sunniva Mathea Runde, Kaja Løvsjø Solberg</p>
-        </div>*/}
+        </div>
       </div>
     );
   }
